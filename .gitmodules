@@ -1,0 +1,6 @@
+[submodule "infini-gram"]
+	path = infini-gram
+	url = https://github.com/liujch1998/infini-gram.git
+[submodule "HarmBench"]
+	path = HarmBench
+	url = https://github.com/centerforaisafety/HarmBench.git

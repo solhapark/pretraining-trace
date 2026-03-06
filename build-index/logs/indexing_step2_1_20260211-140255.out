@@ -1,0 +1,923 @@
+=== Step 2.1 (make-part) started at Wed Feb 11 14:03:01 EST 2026 ===
+RESUME: parts-0 exists. Will only run make-part for missing part files.
+Using 16 batches of 28 jobs each, for a total of 448 jobs.
+Ratio: 5, Token width: 2
+Processing batch 0 to 28...
+  Skip (already done): part 0-1711257852
+  Skip (already done): part 3422315704-5133573556
+  Skip (already done): part 6844631408-8555889260
+  Skip (already done): part 8555789260-10267047112
+  Skip (already done): part 10266947112-11978204964
+  Skip (already done): part 13689262816-15400520668
+  Skip (already done): part 20533894224-22245152076
+  Skip (already done): part 27378525632-29089783484
+  Skip (already done): part 29089683484-30800941336
+  Skip (already done): part 32511999188-34223257040
+  Skip (already done): part 35934314892-37645572744
+  Skip (already done): part 41067788448-42779046300
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 17111578520 to 18822836372
+Loading part of file from byte 22245052076 to 23956309928
+Loading part of file from byte 39356630596 to 41067888448
+Loading part of file from byte 18822736372 to 20533994224
+Loading part of file from byte 15400420668 to 17111678520
+Opening up the dataset files
+Loading part of file from byte 11978104964 to 13689362816
+Opening up the dataset files
+Loading part of file from byte 46201262004 to 47912519856
+Opening up the dataset files
+Loading part of file from byte 5133473556 to 6844731408
+Opening up the dataset files
+Loading part of file from byte 44490104152 to 46201362004
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 37645472744 to 39356730596
+Loading part of file from byte 1711157852 to 3422415704
+Opening up the dataset files
+Loading part of file from byte 30800841336 to 32512099188
+Opening up the dataset files
+Loading part of file from byte 42778946300 to 44490204152
+Opening up the dataset files
+Loading part of file from byte 34223157040 to 35934414892
+Opening up the dataset files
+Loading part of file from byte 23956209928 to 25667467780
+Opening up the dataset files
+Loading part of file from byte 25667367780 to 27378625632
+Writing the suffix array at time t=653284ms
+And finished at time t=654589ms
+Writing the suffix array at time t=706683ms
+Writing the suffix array at time t=707620ms
+And finished at time t=707975ms
+Writing the suffix array at time t=708972ms
+And finished at time t=709013ms
+And finished at time t=710274ms
+Writing the suffix array at time t=714031ms
+And finished at time t=715232ms
+Writing the suffix array at time t=716533ms
+And finished at time t=718256ms
+Processing batch 28 to 56...
+  Skip (already done): part 47912419856-49623677708
+  Skip (already done): part 49623577708-51334835560
+  Skip (already done): part 59890524820-61601782672
+  Skip (already done): part 68446314080-70157571932
+  Skip (already done): part 70157471932-71868729784
+  Skip (already done): part 71868629784-73579887636
+  Skip (already done): part 73579787636-75291045488
+  Skip (already done): part 75290945488-77002203340
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 56468209116 to 58179466968
+Loading part of file from byte 65023998376 to 66735256228
+Loading part of file from byte 53045893412 to 54757151264
+Opening up the dataset files
+Loading part of file from byte 61601682672 to 63312940524
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 54757051264 to 56468309116
+Opening up the dataset files
+Loading part of file from byte 66735156228 to 68446414080
+Loading part of file from byte 63312840524 to 65024098376
+Loading part of file from byte 58179366968 to 59890624820
+Loading part of file from byte 51334735560 to 53045993412
+  Skip (already done): part 82135576896-83846834748
+  Skip (already done): part 83846734748-85557992600
+Opening up the dataset files
+Loading part of file from byte 77002103340 to 78713361192
+Opening up the dataset files
+Loading part of file from byte 78713261192 to 80424519044
+Opening up the dataset files
+Loading part of file from byte 80424419044 to 82135676896
+Opening up the dataset files
+Loading part of file from byte 85557892600 to 87269150452
+  Skip (already done): part 87269050452-88980308304
+  Skip (already done): part 88980208304-90691466156
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 90691366156 to 92402624008
+Loading part of file from byte 92402524008 to 94113781860
+Opening up the dataset files
+Loading part of file from byte 94113681860 to 95824939712
+Writing the suffix array at time t=673233ms
+And finished at time t=674474ms
+Writing the suffix array at time t=682844ms
+Writing the suffix array at time t=682961ms
+Writing the suffix array at time t=684110ms
+And finished at time t=684968ms
+And finished at time t=684985ms
+And finished at time t=685648ms
+Writing the suffix array at time t=706134ms
+And finished at time t=707546ms
+Writing the suffix array at time t=708216ms
+And finished at time t=710446ms
+Processing batch 56 to 84...
+  Skip (already done): part 97535997564-99247255416
+  Skip (already done): part 100958313268-102669571120
+  Skip (already done): part 107802944676-109514202528
+  Skip (already done): part 111225260380-112936518232
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 106091786824 to 107803044676
+Loading part of file from byte 102669471120 to 104380728972
+Loading part of file from byte 104380628972 to 106091886824
+  Skip (already done): part 118069891788-119781149640
+Opening up the dataset files
+Loading part of file from byte 95824839712 to 97536097564
+Loading part of file from byte 99247155416 to 100958413268
+Loading part of file from byte 109514102528 to 111225360380
+  Skip (already done): part 119781049640-121492307492
+Opening up the dataset files
+Loading part of file from byte 112936418232 to 114647676084
+Opening up the dataset files
+Loading part of file from byte 114647576084 to 116358833936
+Opening up the dataset files
+Loading part of file from byte 116358733936 to 118069991788
+Opening up the dataset files
+Loading part of file from byte 121492207492 to 123203465344
+  Skip (already done): part 123203365344-124914623196
+  Skip (already done): part 124914523196-126625781048
+  Skip (already done): part 126625681048-128336938900
+Opening up the dataset files
+Loading part of file from byte 128336838900 to 130048096752
+Opening up the dataset files
+Loading part of file from byte 130047996752 to 131759254604
+Opening up the dataset files
+Loading part of file from byte 131759154604 to 133470412456
+Opening up the dataset files
+Loading part of file from byte 133470312456 to 135181570308
+  Skip (already done): part 135181470308-136892728160
+Opening up the dataset files
+Loading part of file from byte 136892628160 to 138603886012
+  Skip (already done): part 138603786012-140315043864
+  Skip (already done): part 142026101716-143737359568
+Opening up the dataset files
+Loading part of file from byte 140314943864 to 142026201716
+Writing the suffix array at time t=565824ms
+And finished at time t=567048ms
+Writing the suffix array at time t=588158ms
+And finished at time t=589439ms
+Writing the suffix array at time t=694319ms
+And finished at time t=695542ms
+Writing the suffix array at time t=695771ms
+And finished at time t=697250ms
+Writing the suffix array at time t=700261ms
+And finished at time t=701819ms
+Writing the suffix array at time t=728496ms
+And finished at time t=730316ms
+Processing batch 84 to 112...
+  Skip (already done): part 145448417420-147159675272
+  Skip (already done): part 147159575272-148870833124
+  Skip (already done): part 154004206680-155715464532
+  Skip (already done): part 155715364532-157426622384
+  Skip (already done): part 157426522384-159137780236
+  Skip (already done): part 162559995940-164271253792
+  Skip (already done): part 164271153792-165982411644
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 152293048828 to 154004306680
+Loading part of file from byte 148870733124 to 150581990976
+Loading part of file from byte 143737259568 to 145448517420
+Opening up the dataset files
+Loading part of file from byte 150581890976 to 152293148828
+Loading part of file from byte 159137680236 to 160848938088
+  Skip (already done): part 169404627348-171115885200
+Opening up the dataset files
+Loading part of file from byte 160848838088 to 162560095940
+  Skip (already done): part 171115785200-172827043052
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 167693469496 to 169404727348
+Loading part of file from byte 165982311644 to 167693569496
+  Skip (already done): part 174538100904-176249358756
+Opening up the dataset files
+Loading part of file from byte 172826943052 to 174538200904
+Opening up the dataset files
+Loading part of file from byte 176249258756 to 177960516608
+Opening up the dataset files
+Loading part of file from byte 177960416608 to 179671674460
+  Skip (already done): part 179671574460-181382832312
+Opening up the dataset files
+Loading part of file from byte 181382732312 to 183093990164
+Opening up the dataset files
+Loading part of file from byte 183093890164 to 184805148016
+Opening up the dataset files
+Loading part of file from byte 184805048016 to 186516305868
+Opening up the dataset files
+Loading part of file from byte 188227363720 to 189938621572
+Opening up the dataset files
+Loading part of file from byte 186516205868 to 188227463720
+Opening up the dataset files
+Loading part of file from byte 189938521572 to 191649779424
+Writing the suffix array at time t=593348ms
+And finished at time t=594663ms
+Writing the suffix array at time t=691470ms
+And finished at time t=692816ms
+Writing the suffix array at time t=760267ms
+And finished at time t=761768ms
+Processing batch 112 to 140...
+  Skip (already done): part 191649679424-193360937276
+  Skip (already done): part 193360837276-195072095128
+  Skip (already done): part 195071995128-196783252980
+  Skip (already done): part 200205468684-201916726536
+  Skip (already done): part 207050100092-208761357944
+  Skip (already done): part 208761257944-210472515796
+  Skip (already done): part 210472415796-212183673648
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 201916626536 to 203627884388
+Loading part of file from byte 198494310832 to 200205568684
+Loading part of file from byte 203627784388 to 205339042240
+Opening up the dataset files
+Loading part of file from byte 196783152980 to 198494410832
+Loading part of file from byte 205338942240 to 207050200092
+  Skip (already done): part 213894731500-215605989352
+Opening up the dataset files
+Loading part of file from byte 212183573648 to 213894831500
+  Skip (already done): part 222450520760-224161778612
+Opening up the dataset files
+Loading part of file from byte 215605889352 to 217317147204
+  Skip (already done): part 224161678612-225872936464
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 217317047204 to 219028305056
+Loading part of file from byte 219028205056 to 220739462908
+Opening up the dataset files
+Loading part of file from byte 220739362908 to 222450620760
+Opening up the dataset files
+Loading part of file from byte 225872836464 to 227584094316
+  Skip (already done): part 227583994316-229295252168
+Opening up the dataset files
+Loading part of file from byte 229295152168 to 231006410020
+Opening up the dataset files
+Loading part of file from byte 231006310020 to 232717567872
+Opening up the dataset files
+Loading part of file from byte 232717467872 to 234428725724
+  Skip (already done): part 234428625724-236139883576
+Opening up the dataset files
+Loading part of file from byte 236139783576 to 237851041428
+Opening up the dataset files
+Loading part of file from byte 237850941428 to 239562199280
+Writing the suffix array at time t=577401ms
+And finished at time t=578668ms
+Writing the suffix array at time t=674485ms
+Writing the suffix array at time t=675473ms
+And finished at time t=675802ms
+And finished at time t=676863ms
+Writing the suffix array at time t=693592ms
+And finished at time t=694895ms
+Writing the suffix array at time t=702389ms
+And finished at time t=703654ms
+Writing the suffix array at time t=704753ms
+And finished at time t=706147ms
+Processing batch 140 to 168...
+  Skip (already done): part 239562099280-241273357132
+  Skip (already done): part 241273257132-242984514984
+  Skip (already done): part 244695572836-246406830688
+  Skip (already done): part 249829046392-251540304244
+  Skip (already done): part 251540204244-253251462096
+Opening up the dataset files
+Loading part of file from byte 242984414984 to 244695672836
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 246406730688 to 248117988540
+Loading part of file from byte 248117888540 to 249829146392
+  Skip (already done): part 263518309208-265229567060
+Opening up the dataset files
+Loading part of file from byte 253251362096 to 254962619948
+Opening up the dataset files
+Loading part of file from byte 254962519948 to 256673777800
+Opening up the dataset files
+Loading part of file from byte 260095993504 to 261807251356
+Opening up the dataset files
+Loading part of file from byte 256673677800 to 258384935652
+Opening up the dataset files
+Loading part of file from byte 258384835652 to 260096093504
+Opening up the dataset files
+Loading part of file from byte 261807151356 to 263518409208
+  Skip (already done): part 270362940616-272074198468
+Opening up the dataset files
+Loading part of file from byte 265229467060 to 266940724912
+Opening up the dataset files
+Loading part of file from byte 266940624912 to 268651882764
+Opening up the dataset files
+Loading part of file from byte 268651782764 to 270363040616
+Opening up the dataset files
+Loading part of file from byte 272074098468 to 273785356320
+Opening up the dataset files
+Loading part of file from byte 273785256320 to 275496514172
+  Skip (already done): part 275496414172-277207672024
+  Skip (already done): part 277207572024-278918829876
+  Skip (already done): part 278918729876-280629987728
+  Skip (already done): part 280629887728-282341145580
+Opening up the dataset files
+Loading part of file from byte 282341045580 to 284052303432
+  Skip (already done): part 284052203432-285763461284
+Opening up the dataset files
+Loading part of file from byte 285763361284 to 287474619136
+Writing the suffix array at time t=553787ms
+And finished at time t=555123ms
+Writing the suffix array at time t=593705ms
+And finished at time t=595025ms
+Writing the suffix array at time t=599397ms
+And finished at time t=600655ms
+Writing the suffix array at time t=619149ms
+And finished at time t=620610ms
+Writing the suffix array at time t=725486ms
+Writing the suffix array at time t=725875ms
+And finished at time t=727004ms
+And finished at time t=727379ms
+Processing batch 168 to 196...
+  Skip (already done): part 287474519136-289185776988
+  Skip (already done): part 306297255508-308008513360
+  Skip (already done): part 309719571212-311430829064
+Opening up the dataset files
+Loading part of file from byte 289185676988 to 290896934840
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 294319150544 to 296030408396
+Opening up the dataset files
+Loading part of file from byte 290896834840 to 292608092692
+Opening up the dataset files
+Loading part of file from byte 292607992692 to 294319250544
+  Skip (already done): part 313141886916-314853144768
+Loading part of file from byte 304586097656 to 306297355508
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 297741466248 to 299452724100
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 302874939804 to 304586197656
+Loading part of file from byte 296030308396 to 297741566248
+Loading part of file from byte 301163781952 to 302875039804
+Loading part of file from byte 299452624100 to 301163881952
+  Skip (already done): part 314853044768-316564302620
+Opening up the dataset files
+Loading part of file from byte 308008413360 to 309719671212
+  Skip (already done): part 316564202620-318275460472
+Opening up the dataset files
+Loading part of file from byte 311430729064 to 313141986916
+Opening up the dataset files
+Loading part of file from byte 318275360472 to 319986618324
+Opening up the dataset files
+Loading part of file from byte 319986518324 to 321697776176
+Opening up the dataset files
+Loading part of file from byte 321697676176 to 323408934028
+  Skip (already done): part 323408834028-325120091880
+  Skip (already done): part 325119991880-326831249732
+  Skip (already done): part 326831149732-328542407584
+Opening up the dataset files
+Loading part of file from byte 328542307584 to 330253565436
+  Skip (already done): part 330253465436-331964723288
+Opening up the dataset files
+Loading part of file from byte 331964623288 to 333675881140
+  Skip (already done): part 333675781140-335387038992
+Writing the suffix array at time t=696591ms
+And finished at time t=697837ms
+Writing the suffix array at time t=707915ms
+And finished at time t=709164ms
+Writing the suffix array at time t=710146ms
+Writing the suffix array at time t=710284ms
+And finished at time t=711666ms
+And finished at time t=712039ms
+Writing the suffix array at time t=729310ms
+And finished at time t=730550ms
+Writing the suffix array at time t=732101ms
+And finished at time t=733803ms
+Processing batch 196 to 224...
+  Skip (already done): part 335386938992-337098196844
+  Skip (already done): part 338809254696-340520512548
+  Skip (already done): part 340520412548-342231670400
+  Skip (already done): part 343942728252-345653986104
+  Skip (already done): part 345653886104-347365143956
+  Skip (already done): part 347365043956-349076301808
+Opening up the dataset files
+Loading part of file from byte 337098096844 to 338809354696
+Opening up the dataset files
+Loading part of file from byte 342231570400 to 343942828252
+  Skip (already done): part 349076201808-350787459660
+Opening up the dataset files
+Loading part of file from byte 350787359660 to 352498617512
+Opening up the dataset files
+Loading part of file from byte 352498517512 to 354209775364
+Opening up the dataset files
+Loading part of file from byte 354209675364 to 355920933216
+Opening up the dataset files
+Loading part of file from byte 355920833216 to 357632091068
+Opening up the dataset files
+Loading part of file from byte 357631991068 to 359343248920
+Opening up the dataset files
+Loading part of file from byte 359343148920 to 361054406772
+Opening up the dataset files
+Loading part of file from byte 361054306772 to 362765564624
+Opening up the dataset files
+Loading part of file from byte 362765464624 to 364476722476
+Opening up the dataset files
+Loading part of file from byte 364476622476 to 366187880328
+Opening up the dataset files
+Loading part of file from byte 366187780328 to 367899038180
+Opening up the dataset files
+Loading part of file from byte 367898938180 to 369610196032
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 369610096032 to 371321353884
+Loading part of file from byte 371321253884 to 373032511736
+Opening up the dataset files
+Loading part of file from byte 373032411736 to 374743669588
+  Skip (already done): part 374743569588-376454827440
+  Skip (already done): part 376454727440-378165985292
+Opening up the dataset files
+Loading part of file from byte 378165885292 to 379877143144
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 379877043144 to 381588300996
+Loading part of file from byte 381588200996 to 383299458848
+Writing the suffix array at time t=757531ms
+And finished at time t=758865ms
+Writing the suffix array at time t=770274ms
+Writing the suffix array at time t=770815ms
+And finished at time t=771723ms
+And finished at time t=772259ms
+Writing the suffix array at time t=772434ms
+And finished at time t=773778ms
+Writing the suffix array at time t=781850ms
+And finished at time t=783058ms
+Writing the suffix array at time t=793853ms
+And finished at time t=795562ms
+Processing batch 224 to 252...
+  Skip (already done): part 383299358848-385010616700
+  Skip (already done): part 385010516700-386721774552
+  Skip (already done): part 388432832404-390144090256
+  Skip (already done): part 393566305960-395277563812
+  Skip (already done): part 396988621664-398699879516
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 386721674552 to 388432932404
+Loading part of file from byte 391855148108 to 393566405960
+Loading part of file from byte 390143990256 to 391855248108
+  Skip (already done): part 402122095220-403833353072
+Opening up the dataset files
+Loading part of file from byte 395277463812 to 396988721664
+  Skip (already done): part 403833253072-405544510924
+  Skip (already done): part 405544410924-407255668776
+Opening up the dataset files
+Loading part of file from byte 398699779516 to 400411037368
+Opening up the dataset files
+Loading part of file from byte 400410937368 to 402122195220
+Opening up the dataset files
+Loading part of file from byte 407255568776 to 408966826628
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 410677884480 to 412389142332
+Loading part of file from byte 408966726628 to 410677984480
+Opening up the dataset files
+Loading part of file from byte 412389042332 to 414100300184
+Opening up the dataset files
+Loading part of file from byte 414100200184 to 415811458036
+Opening up the dataset files
+Loading part of file from byte 415811358036 to 417522615888
+Opening up the dataset files
+Loading part of file from byte 417522515888 to 419233773740
+  Skip (already done): part 420944831592-422656089444
+Opening up the dataset files
+Loading part of file from byte 419233673740 to 420944931592
+  Skip (already done): part 422655989444-424367247296
+Opening up the dataset files
+Loading part of file from byte 424367147296 to 426078405148
+  Skip (already done): part 426078305148-427789563000
+  Skip (already done): part 427789463000-429500720852
+Opening up the dataset files
+Loading part of file from byte 429500620852 to 431211878704
+Writing the suffix array at time t=601434ms
+And finished at time t=602694ms
+Writing the suffix array at time t=687236ms
+And finished at time t=688583ms
+Writing the suffix array at time t=715487ms
+And finished at time t=716808ms
+Writing the suffix array at time t=717843ms
+And finished at time t=719136ms
+Writing the suffix array at time t=734098ms
+And finished at time t=735727ms
+Writing the suffix array at time t=740901ms
+And finished at time t=742396ms
+Processing batch 252 to 280...
+  Skip (already done): part 434634094408-436345352260
+  Skip (already done): part 441478725816-443189983668
+Opening up the dataset files
+Loading part of file from byte 432922936556 to 434634194408
+Opening up the dataset files
+Loading part of file from byte 431211778704 to 432923036556
+  Skip (already done): part 443189883668-444901141520
+  Skip (already done): part 444901041520-446612299372
+Opening up the dataset files
+Loading part of file from byte 436345252260 to 438056510112
+Opening up the dataset files
+Loading part of file from byte 438056410112 to 439767667964
+Opening up the dataset files
+Loading part of file from byte 439767567964 to 441478825816
+  Skip (already done): part 446612199372-448323457224
+Opening up the dataset files
+Loading part of file from byte 451745672928 to 453456930780
+Opening up the dataset files
+Loading part of file from byte 448323357224 to 450034615076
+Opening up the dataset files
+Loading part of file from byte 450034515076 to 451745772928
+  Skip (already done): part 453456830780-455168088632
+  Skip (already done): part 455167988632-456879246484
+Opening up the dataset files
+Loading part of file from byte 458590304336 to 460301562188
+Opening up the dataset files
+Loading part of file from byte 456879146484 to 458590404336
+  Skip (already done): part 460301462188-462012720040
+Opening up the dataset files
+Loading part of file from byte 463723777892 to 465435035744
+Opening up the dataset files
+Loading part of file from byte 462012620040 to 463723877892
+  Skip (already done): part 465434935744-467146193596
+  Skip (already done): part 468857251448-470568509300
+Opening up the dataset files
+Loading part of file from byte 467146093596 to 468857351448
+Opening up the dataset files
+Loading part of file from byte 470568409300 to 472279667152
+  Skip (already done): part 472279567152-473990825004
+  Skip (already done): part 473990725004-475701982856
+Opening up the dataset files
+Loading part of file from byte 475701882856 to 477413140708
+Opening up the dataset files
+Loading part of file from byte 477413040708 to 479124298560
+Writing the suffix array at time t=428301ms
+And finished at time t=429523ms
+Writing the suffix array at time t=707383ms
+Writing the suffix array at time t=707529ms
+And finished at time t=708846ms
+And finished at time t=709157ms
+Writing the suffix array at time t=713253ms
+And finished at time t=714821ms
+Writing the suffix array at time t=718753ms
+And finished at time t=720296ms
+Writing the suffix array at time t=756845ms
+And finished at time t=758640ms
+Processing batch 280 to 308...
+  Skip (already done): part 479124198560-480835456412
+  Skip (already done): part 482546514264-484257772116
+  Skip (already done): part 484257672116-485968929968
+  Skip (already done): part 491102303524-492813561376
+Opening up the dataset files
+Loading part of file from byte 480835356412 to 482546614264
+Opening up the dataset files
+Loading part of file from byte 485968829968 to 487680087820
+Opening up the dataset files
+Loading part of file from byte 487679987820 to 489391245672
+  Skip (already done): part 497946934932-499658192784
+Opening up the dataset files
+Loading part of file from byte 489391145672 to 491102403524
+Opening up the dataset files
+Loading part of file from byte 492813461376 to 494524719228
+  Skip (already done): part 501369250636-503080508488
+Opening up the dataset files
+Loading part of file from byte 494524619228 to 496235877080
+Opening up the dataset files
+Loading part of file from byte 496235777080 to 497947034932
+Opening up the dataset files
+Loading part of file from byte 499658092784 to 501369350636
+  Skip (already done): part 506502724192-508213982044
+Opening up the dataset files
+Loading part of file from byte 503080408488 to 504791666340
+Opening up the dataset files
+Loading part of file from byte 504791566340 to 506502824192
+Opening up the dataset files
+Loading part of file from byte 508213882044 to 509925139896
+Opening up the dataset files
+Loading part of file from byte 509925039896 to 511636297748
+Opening up the dataset files
+Loading part of file from byte 511636197748 to 513347455600
+  Skip (already done): part 513347355600-515058613452
+  Skip (already done): part 515058513452-516769771304
+  Skip (already done): part 516769671304-518480929156
+  Skip (already done): part 520191987008-521903244860
+Opening up the dataset files
+Loading part of file from byte 518480829156 to 520192087008
+Opening up the dataset files
+Loading part of file from byte 521903144860 to 523614402712
+  Skip (already done): part 525325460564-527036718416
+Opening up the dataset files
+Loading part of file from byte 523614302712 to 525325560564
+Writing the suffix array at time t=676999ms
+And finished at time t=678299ms
+Writing the suffix array at time t=707768ms
+And finished at time t=709091ms
+Writing the suffix array at time t=719823ms
+And finished at time t=721076ms
+Writing the suffix array at time t=730867ms
+Writing the suffix array at time t=731917ms
+And finished at time t=732107ms
+And finished at time t=733452ms
+Writing the suffix array at time t=737694ms
+And finished at time t=739176ms
+Processing batch 308 to 336...
+  Skip (already done): part 527036618416-528747876268
+  Skip (already done): part 530458934120-532170191972
+  Skip (already done): part 533881249824-535592507676
+  Skip (already done): part 535592407676-537303665528
+  Skip (already done): part 537303565528-539014823380
+  Skip (already done): part 540725881232-542437139084
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 532170091972 to 533881349824
+Loading part of file from byte 528747776268 to 530459034120
+  Skip (already done): part 542437039084-544148296936
+  Skip (already done): part 544148196936-545859454788
+Opening up the dataset files
+Loading part of file from byte 539014723380 to 540725981232
+  Skip (already done): part 549281670492-550992928344
+Opening up the dataset files
+Loading part of file from byte 545859354788 to 547570612640
+  Skip (already done): part 550992828344-552704086196
+Opening up the dataset files
+Loading part of file from byte 547570512640 to 549281770492
+  Skip (already done): part 552703986196-554415244048
+Opening up the dataset files
+Loading part of file from byte 554415144048 to 556126401900
+Opening up the dataset files
+Loading part of file from byte 556126301900 to 557837559752
+Opening up the dataset files
+Loading part of file from byte 557837459752 to 559548717604
+Opening up the dataset files
+Loading part of file from byte 559548617604 to 561259875456
+Opening up the dataset files
+Loading part of file from byte 561259775456 to 562971033308
+Opening up the dataset files
+Loading part of file from byte 562970933308 to 564682191160
+Opening up the dataset files
+Loading part of file from byte 566393249012 to 568104506864
+Opening up the dataset files
+Loading part of file from byte 568104406864 to 569815664716
+Opening up the dataset files
+Loading part of file from byte 564682091160 to 566393349012
+  Skip (already done): part 569815564716-571526822568
+Opening up the dataset files
+Loading part of file from byte 571526722568 to 573237980420
+Opening up the dataset files
+Loading part of file from byte 573237880420 to 574949138272
+Writing the suffix array at time t=553718ms
+And finished at time t=554951ms
+Writing the suffix array at time t=672747ms
+And finished at time t=674021ms
+Writing the suffix array at time t=696008ms
+And finished at time t=697462ms
+Writing the suffix array at time t=711597ms
+And finished at time t=713032ms
+Writing the suffix array at time t=721715ms
+And finished at time t=723422ms
+Writing the suffix array at time t=778476ms
+And finished at time t=780210ms
+Processing batch 336 to 364...
+  Skip (already done): part 576660196124-578371453976
+  Skip (already done): part 580082511828-581793769680
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 574949038272 to 576660296124
+  Skip (already done): part 585215985384-586927243236
+Loading part of file from byte 578371353976 to 580082611828
+Opening up the dataset files
+Loading part of file from byte 581793669680 to 583504927532
+Opening up the dataset files
+Loading part of file from byte 583504827532 to 585216085384
+Opening up the dataset files
+Loading part of file from byte 586927143236 to 588638401088
+Opening up the dataset files
+Loading part of file from byte 588638301088 to 590349558940
+Opening up the dataset files
+Loading part of file from byte 590349458940 to 592060716792
+  Skip (already done): part 592060616792-593771874644
+Opening up the dataset files
+Loading part of file from byte 593771774644 to 595483032496
+  Skip (already done): part 595482932496-597194190348
+  Skip (already done): part 597194090348-598905348200
+Opening up the dataset files
+Loading part of file from byte 598905248200 to 600616506052
+  Skip (already done): part 600616406052-602327663904
+  Skip (already done): part 602327563904-604038821756
+  Skip (already done): part 607461037460-609172295312
+Opening up the dataset files
+Loading part of file from byte 604038721756 to 605749979608
+Opening up the dataset files
+Loading part of file from byte 605749879608 to 607461137460
+  Skip (already done): part 609172195312-610883453164
+Opening up the dataset files
+Loading part of file from byte 610883353164 to 612594611016
+Opening up the dataset files
+Loading part of file from byte 612594511016 to 614305768868
+Opening up the dataset files
+Loading part of file from byte 614305668868 to 616016926720
+Opening up the dataset files
+Loading part of file from byte 616016826720 to 617728084572
+Opening up the dataset files
+Loading part of file from byte 617727984572 to 619439242424
+Opening up the dataset files
+Loading part of file from byte 619439142424 to 621150400276
+  Skip (already done): part 621150300276-622861558128
+Writing the suffix array at time t=681226ms
+And finished at time t=682626ms
+Writing the suffix array at time t=694938ms
+And finished at time t=696388ms
+Writing the suffix array at time t=704716ms
+And finished at time t=706195ms
+Writing the suffix array at time t=716354ms
+And finished at time t=717682ms
+Writing the suffix array at time t=729601ms
+And finished at time t=730875ms
+Writing the suffix array at time t=741471ms
+And finished at time t=742852ms
+Processing batch 364 to 392...
+  Skip (already done): part 622861458128-624572715980
+  Skip (already done): part 631417247388-633128505240
+  Skip (already done): part 634839563092-636550820944
+Opening up the dataset files
+Loading part of file from byte 627994931684 to 629706189536
+Opening up the dataset files
+Loading part of file from byte 624572615980 to 626283873832
+Opening up the dataset files
+Loading part of file from byte 626283773832 to 627995031684
+Opening up the dataset files
+Loading part of file from byte 629706089536 to 631417347388
+  Skip (already done): part 636550720944-638261978796
+Opening up the dataset files
+Loading part of file from byte 633128405240 to 634839663092
+  Skip (already done): part 639973036648-641684294500
+Opening up the dataset files
+Loading part of file from byte 638261878796 to 639973136648
+Opening up the dataset files
+Loading part of file from byte 641684194500 to 643395452352
+  Skip (already done): part 643395352352-645106610204
+  Skip (already done): part 645106510204-646817768056
+Opening up the dataset files
+Loading part of file from byte 646817668056 to 648528925908
+  Skip (already done): part 648528825908-650240083760
+Opening up the dataset files
+Loading part of file from byte 650239983760 to 651951241612
+  Skip (already done): part 651951141612-653662399464
+Opening up the dataset files
+Loading part of file from byte 653662299464 to 655373557316
+Opening up the dataset files
+Loading part of file from byte 655373457316 to 657084715168
+  Skip (already done): part 657084615168-658795873020
+Opening up the dataset files
+Loading part of file from byte 658795773020 to 660507030872
+  Skip (already done): part 667351562280-669062820132
+Opening up the dataset files
+Loading part of file from byte 660506930872 to 662218188724
+Opening up the dataset files
+Loading part of file from byte 662218088724 to 663929346576
+Opening up the dataset files
+Loading part of file from byte 663929246576 to 665640504428
+Opening up the dataset files
+Loading part of file from byte 665640404428 to 667351662280
+Opening up the dataset files
+Loading part of file from byte 669062720132 to 670773977984
+Writing the suffix array at time t=412803ms
+And finished at time t=414090ms
+Writing the suffix array at time t=695129ms
+And finished at time t=696426ms
+Writing the suffix array at time t=713117ms
+And finished at time t=714351ms
+Writing the suffix array at time t=737366ms
+And finished at time t=738700ms
+Writing the suffix array at time t=759969ms
+Writing the suffix array at time t=760751ms
+And finished at time t=761393ms
+And finished at time t=762452ms
+Processing batch 392 to 420...
+  Skip (already done): part 670773877984-672485135836
+  Skip (already done): part 674196193688-675907451540
+  Skip (already done): part 679329667244-681040925096
+  Skip (already done): part 681040825096-682752082948
+  Skip (already done): part 684463140800-686174398652
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 672485035836 to 674196293688
+Loading part of file from byte 677618509392 to 679329767244
+Loading part of file from byte 675907351540 to 677618609392
+  Skip (already done): part 687885456504-689596714356
+Opening up the dataset files
+Loading part of file from byte 682751982948 to 684463240800
+Opening up the dataset files
+Loading part of file from byte 686174298652 to 687885556504
+Opening up the dataset files
+Loading part of file from byte 689596614356 to 691307872208
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 693018930060 to 694730187912
+Loading part of file from byte 691307772208 to 693019030060
+  Skip (already done): part 694730087912-696441345764
+Opening up the dataset files
+Loading part of file from byte 696441245764 to 698152503616
+Opening up the dataset files
+Loading part of file from byte 698152403616 to 699863661468
+  Skip (already done): part 699863561468-701574819320
+  Skip (already done): part 701574719320-703285977172
+Opening up the dataset files
+Loading part of file from byte 703285877172 to 704997135024
+Opening up the dataset files
+Loading part of file from byte 704997035024 to 706708292876
+  Skip (already done): part 706708192876-708419450728
+  Skip (already done): part 708419350728-710130608580
+Opening up the dataset files
+Loading part of file from byte 710130508580 to 711841766432
+Opening up the dataset files
+Loading part of file from byte 711841666432 to 713552924284
+  Skip (already done): part 713552824284-715264082136
+Opening up the dataset files
+Loading part of file from byte 715263982136 to 716975239988
+Opening up the dataset files
+Loading part of file from byte 716975139988 to 718686397840
+Writing the suffix array at time t=403321ms
+And finished at time t=404610ms
+Writing the suffix array at time t=530374ms
+And finished at time t=531625ms
+Writing the suffix array at time t=556485ms
+And finished at time t=557725ms
+Writing the suffix array at time t=683316ms
+And finished at time t=684789ms
+Writing the suffix array at time t=687280ms
+And finished at time t=688876ms
+Writing the suffix array at time t=734114ms
+And finished at time t=735606ms
+Processing batch 420 to 448...
+  Skip (already done): part 720397455692-722108713544
+  Skip (already done): part 722108613544-723819871396
+  Skip (already done): part 728953244952-730664502804
+Opening up the dataset files
+Loading part of file from byte 718686297840 to 720397555692
+Opening up the dataset files
+Loading part of file from byte 723819771396 to 725531029248
+Opening up the dataset files
+Loading part of file from byte 725530929248 to 727242187100
+Opening up the dataset files
+Loading part of file from byte 727242087100 to 728953344952
+Opening up the dataset files
+Loading part of file from byte 730664402804 to 732375660656
+Opening up the dataset files
+Loading part of file from byte 732375560656 to 734086818508
+  Skip (already done): part 737509034212-739220292064
+Opening up the dataset files
+Loading part of file from byte 734086718508 to 735797976360
+Opening up the dataset files
+Loading part of file from byte 735797876360 to 737509134212
+  Skip (already done): part 739220192064-740931449916
+  Skip (already done): part 740931349916-742642607768
+  Skip (already done): part 742642507768-744353765620
+  Skip (already done): part 744353665620-746064923472
+  Skip (already done): part 746064823472-747776081324
+Opening up the dataset files
+Loading part of file from byte 747775981324 to 749487239176
+Opening up the dataset files
+Loading part of file from byte 749487139176 to 751198397028
+  Skip (already done): part 754620612732-756331870584
+Opening up the dataset files
+Loading part of file from byte 752909454880 to 754620712732
+Opening up the dataset files
+Loading part of file from byte 751198297028 to 752909554880
+Opening up the dataset files
+Loading part of file from byte 756331770584 to 758043028436
+  Skip (already done): part 758042928436-759754186288
+Opening up the dataset files
+Loading part of file from byte 759754086288 to 761465344140
+Opening up the dataset files
+Loading part of file from byte 761465244140 to 763176501992
+Opening up the dataset files
+Loading part of file from byte 763176401992 to 764887659844
+  Skip (already done): part 764887559844-766598717304
+Writing the suffix array at time t=559307ms
+And finished at time t=560636ms
+Writing the suffix array at time t=643953ms
+And finished at time t=645287ms
+Writing the suffix array at time t=688952ms
+And finished at time t=690268ms
+Writing the suffix array at time t=711747ms
+And finished at time t=713064ms
+Writing the suffix array at time t=724422ms
+Writing the suffix array at time t=724797ms
+And finished at time t=725880ms
+And finished at time t=726302ms
+Done: 263 parts built, 185 skipped (already present).
+=== Step 2.1 (make-part) finished at Wed Feb 11 17:20:54 EST 2026 ===
+=== Elapsed time: 0 days 03:17:53 (total 11873 seconds)
+
+=== Parts done: 286/448. Re-submit this job to continue from checkpoint. ===
+=== When all parts are done, run run_indexing_step2_2_merge.sh ===

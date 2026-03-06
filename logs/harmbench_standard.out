@@ -1,0 +1,26 @@
+=== Job started at Sun Feb 22 04:21:56 PM EST 2026 ===
+2026-02-22 16:22:01,858 - __main__ - INFO - Total rows: 400, After filtering with 'standard': 200
+2026-02-22 16:22:01,860 - __main__ - INFO - Device: cuda
+2026-02-22 16:22:01,860 - __main__ - INFO - Loading model: EleutherAI/gpt-j-6B ...
+2026-02-22 16:22:01,962 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:01,990 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6b/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:02,008 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/EleutherAI/gpt-j-6b/47e169305d2e8376be1d31e765533382721b2cc1/config.json "HTTP/1.1 200 OK"
+2026-02-22 16:22:02,040 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6B/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:02,072 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6b/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:02,089 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/EleutherAI/gpt-j-6b/47e169305d2e8376be1d31e765533382721b2cc1/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-22 16:22:02,122 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/EleutherAI/gpt-j-6B/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:02,154 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/EleutherAI/gpt-j-6b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-22 16:22:02,196 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/EleutherAI/gpt-j-6B/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:02,231 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/EleutherAI/gpt-j-6b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-22 16:22:02,383 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:02,418 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6b/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:02,435 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/EleutherAI/gpt-j-6b/47e169305d2e8376be1d31e765533382721b2cc1/config.json "HTTP/1.1 200 OK"
+2026-02-22 16:22:02,976 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6B/resolve/main/model.safetensors "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:08,608 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6B/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:08,637 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6b/resolve/main/generation_config.json "HTTP/1.1 404 Not Found"
+2026-02-22 16:22:08,667 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6B/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:08,697 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/EleutherAI/gpt-j-6b/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-22 16:22:08,714 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/EleutherAI/gpt-j-6b/47e169305d2e8376be1d31e765533382721b2cc1/config.json "HTTP/1.1 200 OK"
+2026-02-22 17:19:44,407 - __main__ - INFO - Results saved to: data/gpt_j_6b/harmbench_standard.json
+=== Job finished at Sun Feb 22 05:19:45 PM EST 2026 ===
+=== Elapsed time: 0 days 00:57:49 (total 3469 seconds)

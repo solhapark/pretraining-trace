@@ -1,0 +1,10 @@
+.env
+train/
+test/
+index/
+index-test/
+build-index/train/
+
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store

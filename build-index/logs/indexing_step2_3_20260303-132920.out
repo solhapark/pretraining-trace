@@ -1,0 +1,15 @@
+=== Step 2.3 (concat) started at Tue Mar  3 01:29:25 PM UTC 2026 ===
+WARNING: table.0 already exists. Will be overwritten.
+Ratio: 5, Token width: 2
+Merged directory: /home/solhapark/pretrain-trace/index/merged-0
+Number of merged files: 16
+Output file: /home/solhapark/pretrain-trace/index/table.0
+Success! table.0 created: 1916496793260 bytes (1.8TiB)
+=== Step 2.3 (concat) finished at Tue Mar  3 02:54:35 PM UTC 2026 ===
+=== Elapsed time: 0 days 01:25:10 (total 5110 seconds)
+
+=== Indexing complete! ===
+Final index files:
+-rw-r--r-- 1 solhapark domain users 1.6G Feb  9 22:40 /home/solhapark/pretrain-trace/index/offset.0
+-rw-r--r-- 1 solhapark domain users 1.8T Mar  3 14:54 /home/solhapark/pretrain-trace/index/table.0
+-rw-r--r-- 1 solhapark domain users 714G Feb  9 23:39 /home/solhapark/pretrain-trace/index/tokenized.0
