@@ -6,8 +6,8 @@
 #SBATCH --mem=32000
 #SBATCH --cpus-per-task=8
 #SBATCH --time=2-00:00
-#SBATCH --output=/dev/null
-#SBATCH --error=/dev/null
+#SBATCH --output=run_harmbench_${CONFIG}.log
+#SBATCH --error=run_harmbench_${CONFIG}.err
 
 CONFIG="contextual"  # Change this to "copyright", "standard", etc.
 

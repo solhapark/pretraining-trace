@@ -15,7 +15,7 @@ load_dotenv()
 # Part 1: Display original results (harmbench_copyright.json)
 # ============================================================================
 # Load and display JSON results
-json_path = "./data/gpt_j_6b/harmbench_contextual.json"
+json_path = "./data/gpt_j_6b/harmbench_standard.json"
 if os.path.exists(json_path):
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)

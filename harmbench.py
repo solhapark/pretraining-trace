@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 """Generate HarmBench prompts using GPT-J-6B and save results as JSON."""
 
-import argparse
-import json
-import logging
 import os
-import random
 import sys
+import json
 import time
-from datetime import datetime
-
+import torch
+import random
+import logging
+import argparse
 import numpy as np
 import pandas as pd
-import torch
 from tqdm import tqdm
+from datetime import datetime
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL_ID = "EleutherAI/gpt-j-6B"
@@ -50,7 +49,7 @@ def setup_logger():
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Run GPT-J on HarmBench prompts")
-    parser.add_argument("--csv_path", type=str, default="HarmBench/data/behavior_datasets/harmbench_behaviors_text_test.csv")
+    parser.add_argument("--csv_path", type=str, default="HarmBench/data/behavior_datasets/harmbench_behaviors_text_all.csv")
     parser.add_argument("--out_json", type=str, default="data/gpt_j_6b/harmbench_copyright.json")
     parser.add_argument("--config", type=str, default="copyright", help="FunctionalCategory to filter (e.g., 'copyright', 'standard')")
     parser.add_argument("--max_new_tokens", type=int, default=1024)
@@ -103,8 +102,8 @@ def main():
     
     # Generate
     os.makedirs(os.path.dirname(args.out_json) or ".", exist_ok=True)
-    with open(args.out_json, "w", encoding="utf-8") as fout:
-        fout.write("[\n")
+    with open(args.out_json, "w", encoding="utf-8") as f:
+        f.write("[\n")
         first = True
         for idx, row in tqdm(df.iterrows(), total=len(df), desc="Generating"):
             prompt_text = str(row.get("Behavior", "")) if row.get("Behavior") is not None else ""
@@ -145,11 +144,11 @@ def main():
                     torch.cuda.empty_cache()
             
             if not first:
-                fout.write(",\n")
+                f.write(",\n")
             first = False
-            fout.write(json.dumps(record, ensure_ascii=False, allow_nan=False))
-            fout.flush()
-        fout.write("\n]\n")
+            f.write(json.dumps(record, ensure_ascii=False, allow_nan=False))
+            f.flush()
+        f.write("\n]\n")
     
     logger.info("Results saved to: %s", args.out_json)
     

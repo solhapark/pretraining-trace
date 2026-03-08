@@ -28,9 +28,9 @@ QUERY_STR = "natural language processing"
 
 def setup_logger():
     os.makedirs("logs", exist_ok=True)
-    # timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    # log_filepath = f"logs/run_query_example_{timestamp}.log"
-    log_filepath = "logs/run_query_example.log"
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_filepath = f"logs/run_query_example_{timestamp}.log"
+    # log_filepath = "logs/run_query_example.log"
 
     logging.basicConfig(
         level=logging.INFO,
@@ -56,6 +56,7 @@ def main():
         logger.error("Point INDEX_DIR to the directory that contains tokenized.*, offset.*, table.*")
         sys.exit(1)
 
+    tokenizer = None
     if TOKENIZER_NAME is None:
         logger.info("Using byte-level index (tokenizer=None during indexing)")
         eos_token_id = 0
@@ -94,21 +95,41 @@ def main():
     logger.info("Query: '%s'", QUERY_STR)
     logger.info("Token IDs: %s", input_ids)
 
+    # Step 1: Count query  
+    logger.info("=== Step 1: Count query ===")
     result = engine.count(input_ids=input_ids)
     logger.info("Count: %s", result)
 
+    # Step 2: Find query (simple query)
+    logger.info("=== Step 2: Find query ===")
     find_result = engine.find(input_ids=input_ids)
     if "error" in find_result:
         logger.error("Find error: %s", find_result["error"])
         return
     logger.info("Find (segment_by_shard): %s", find_result)
 
+    # Step 3: Get document by rank
     if find_result.get("segment_by_shard") and find_result["segment_by_shard"][0][0] < find_result["segment_by_shard"][0][1]:
+        logger.info("=== Step 3: Get document by rank ===")
         s, (start_rank, end_rank) = 0, find_result["segment_by_shard"][0]
         rank = start_rank
         doc = engine.get_doc_by_rank(s=s, rank=rank, max_disp_len=20)
         if "error" not in doc:
             logger.info("First matching doc (shard %s, rank %s): %s", s, rank, doc)
+            # Decode token_ids to text if tokenizer is available
+            if tokenizer is not None and "token_ids" in doc:
+                try:
+                    decoded_text = tokenizer.decode(doc["token_ids"], skip_special_tokens=False)
+                    logger.info("Decoded text: %s", decoded_text)
+                except Exception as e:
+                    logger.warning("Failed to decode token_ids: %s", e)
+            elif "token_ids" in doc:
+                # Byte-level: decode as UTF-8
+                try:
+                    decoded_text = bytes(doc["token_ids"]).decode("utf-8", errors="replace")
+                    logger.info("Decoded text (byte-level): %s", decoded_text)
+                except Exception as e:
+                    logger.warning("Failed to decode token_ids as UTF-8: %s", e)
         else:
             logger.warning("Doc retrieval: %s", doc.get("error", doc))
     
