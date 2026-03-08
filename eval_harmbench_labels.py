@@ -14,13 +14,34 @@ Usage:
 
 import argparse
 import json
+import logging
 import os
 import sys
+import time
+from datetime import datetime
 from pathlib import Path
 
 # Import HarmBench eval utils
 sys.path.insert(0, str(Path(__file__).parent / "HarmBench"))
 from eval_utils import compute_results_hashing, compute_results_classifier
+
+
+def setup_logger():
+    os.makedirs("logs", exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_filepath = f"logs/eval_harmbench_labels_{timestamp}.log"
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        handlers=[
+            logging.StreamHandler(sys.stdout),
+            logging.FileHandler(log_filepath, encoding="utf-8"),
+        ],
+    )
+    logger = logging.getLogger(__name__)
+    logger.info("Logging to file: %s", log_filepath)
+    return logger
 
 
 def parse_args():
@@ -34,8 +55,11 @@ def parse_args():
 
 
 def main():
+    logger = setup_logger()
     args = parse_args()
-    
+    logger.info("=== Job started at %s ===", datetime.now().strftime("%a %b %d %I:%M:%S %p %Z %Y"))
+    start_time = time.time()
+
     # Change to HarmBench directory for compute_results_hashing to find data files
     harmbench_dir = Path(__file__).parent / "HarmBench"
     original_cwd = os.getcwd()
@@ -49,33 +73,33 @@ def main():
             from vllm import LLM, SamplingParams
             from transformers import AutoTokenizer
             
-            print(f"Loading classifier from {args.cls_path}...")
+            logger.info("Loading classifier from %s...", args.cls_path)
             tokenizer = AutoTokenizer.from_pretrained(args.cls_path)
             tokenizer.truncation_side = "right"
             
             cls = LLM(model=args.cls_path, tensor_parallel_size=1)
             cls.llm_engine.tokenizer.tokenizer.truncation_side = "left"
             cls_params = SamplingParams(temperature=0.0, max_tokens=1)
-            print("Classifier loaded successfully")
+            logger.info("Classifier loaded successfully")
         except ImportError:
-            print("WARNING: vLLM not available. Classifier-based evaluation (standard/contextual) will be skipped.")
-            print("Install vLLM to enable classifier evaluation: pip install vllm")
+            logger.warning("vLLM not available. Classifier-based evaluation (standard/contextual) will be skipped.")
+            logger.warning("Install vLLM to enable classifier evaluation: pip install vllm")
         except Exception as e:
-            print(f"WARNING: Failed to load classifier: {e}")
-            print("Classifier-based evaluation (standard/contextual) will be skipped.")
+            logger.warning("Failed to load classifier: %s", e)
+            logger.warning("Classifier-based evaluation (standard/contextual) will be skipped.")
     
     try:
         # Load input JSON (use absolute path since we changed directory)
         input_path = Path(original_cwd) / args.data_dir if not os.path.isabs(args.data_dir) else args.data_dir
-        print(f"Loading input JSON from {input_path}...")
+        logger.info("Loading input JSON from %s...", input_path)
         with open(input_path, "r", encoding="utf-8") as f:
             records = json.load(f)
-        print(f"Loaded {len(records)} records")
+        logger.info("Loaded %d records", len(records))
         
         # Limit if specified
         if args.limit is not None and args.limit > 0:
             records = records[:args.limit]
-            print(f"Limited to {len(records)} records")
+            logger.info("Limited to %d records", len(records))
         
         # Process each record
         processed = []
@@ -147,20 +171,27 @@ def main():
         
         # Save output (use absolute path since we changed directory)
         output_path = Path(original_cwd) / args.output_dir if not os.path.isabs(args.output_dir) else args.output_dir
-        print(f"Saving results to {output_path}...")
+        logger.info("Saving results to %s...", output_path)
         os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(processed, f, ensure_ascii=False, indent=2)
         
-        # Print summary
+        # Summary
         with_label = sum(1 for r in processed if "hb_label" in r)
         with_error = sum(1 for r in processed if "error" in r)
-        print(f"\nSummary:")
-        print(f"  Total records: {len(processed)}")
-        print(f"  Records with hb_label: {with_label}")
-        print(f"  Records with error: {with_error}")
-    
+        logger.info("Summary: total=%d, with hb_label=%d, with error=%d", len(processed), with_label, with_error)
+
     finally:
+        end_time = time.time()
+        elapsed_float = end_time - start_time
+        elapsed = int(elapsed_float)
+        days = elapsed // 86400
+        hours = (elapsed % 86400) // 3600
+        minutes = (elapsed % 3600) // 60
+        seconds = elapsed % 60
+        logger.info("=== Job finished at %s ===", datetime.now().strftime("%a %b %d %I:%M:%S %p %Z %Y"))
+        logger.info("=== Elapsed time: %d days %02d:%02d:%02d (total %.3f seconds) ===",
+                    days, hours, minutes, seconds, elapsed_float)
         # Restore original working directory
         os.chdir(original_cwd)
 
