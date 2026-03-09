@@ -183,7 +183,7 @@ def main():
                 record["error"] = f"{type(exc).__name__}: {exc}"
                 processed.append(record)
 
-            if (idx + 1) % 100 == 0:
+            if (idx + 1) % 10 == 0:
                 logger.info("Processed %d / %d records...", idx + 1, len(records))
 
         # Save output using absolute path (CWD has been changed)
