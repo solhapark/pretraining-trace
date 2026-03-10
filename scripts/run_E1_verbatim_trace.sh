@@ -30,11 +30,11 @@ cd /gpfs/scratch/solhapark/pretraining-trace
 # ===========================================================================
 # Phase 1 only (metrics, no snippet retrieval) — faster, start here
 # ===========================================================================
-python E1_verbatim_trace.py \
-    --input results/gpt_j_6b/harmbench_standard_labeled.json \
-    --output results/gpt_j_6b/E1_verbatim_standard.json \
-    --l_min 20 \
-    --top_k_ratio 0.05
+# python E1_verbatim_trace.py \
+#     --input results/gpt_j_6b/harmbench_standard_labeled.json \
+#     --output results/gpt_j_6b/E1_verbatim_standard.json \
+#     --l_min 20 \
+#     --top_k_ratio 0.05
 
 # ===========================================================================
 # Phase 1 + Phase 2 (metrics + snippet retrieval) — run after Phase 1 works
@@ -52,10 +52,10 @@ python E1_verbatim_trace.py \
 # ===========================================================================
 # For testing: process only first 2 records
 # ===========================================================================
-# python e1_verbatim_trace.py \
-#     --input results/gpt_j_6b/harmbench_standard_labeled.json \
-#     --output results/gpt_j_6b/e1_verbatim_standard_test.json \
-#     --l_min 20 \
-#     --top_k_ratio 0.05 \
-#     --retrieve_snippets \
-#     --limit 2
+python E1_verbatim_trace.py \
+    --input results/gpt_j_6b/harmbench_standard_labeled.json \
+    --output results/gpt_j_6b/e1_verbatim_standard_test.json \
+    --l_min 20 \
+    --top_k_ratio 0.05 \
+    --retrieve_snippets \
+    --limit 2
