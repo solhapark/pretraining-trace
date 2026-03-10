@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --job-name=e1_verbatim_trace
+#SBATCH --job-name=E1_verbatim_trace
 #SBATCH --nodes=1
 #SBATCH --partition=short-40core
 #SBATCH --mem=8G
 #SBATCH --cpus-per-task=4
-#SBATCH --time=12:00:00
+#SBATCH --time=4:00:00
 #SBATCH --output=logs/e1_verbatim_trace.out
 #SBATCH --error=logs/e1_verbatim_trace.err
 
@@ -30,9 +30,9 @@ cd /gpfs/scratch/solhapark/pretraining-trace
 # ===========================================================================
 # Phase 1 only (metrics, no snippet retrieval) — faster, start here
 # ===========================================================================
-python e1_verbatim_trace.py \
+python E1_verbatim_trace.py \
     --input results/gpt_j_6b/harmbench_standard_labeled.json \
-    --output results/gpt_j_6b/e1_verbatim_standard.json \
+    --output results/gpt_j_6b/E1_verbatim_standard.json \
     --l_min 20 \
     --top_k_ratio 0.05
 
