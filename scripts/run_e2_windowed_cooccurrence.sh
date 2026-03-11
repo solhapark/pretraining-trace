@@ -27,13 +27,13 @@ fi
 
 cd /gpfs/scratch/solhapark/pretraining-trace
 
-Test run (first 5 records, compliant only)
+# Test run (first 5 records, compliant only)
 python e2_windowed_cooccurrence.py \
     --input results/gpt_j_6b/e1_verbatim_standard.json \
     --output results/gpt_j_6b/e2_cooccurrence_test.json \
     --windows 100 500 1000 \
     --compliant_only \
-    --limit 5
+    --limit 10
 
 # # Full run (all 200 records, multiple windows)
 # python e2_windowed_cooccurrence.py \
