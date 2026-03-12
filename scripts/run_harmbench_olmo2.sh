@@ -33,11 +33,13 @@ set -euo pipefail
 echo "=== Job started: $(date) ==="
 echo "=== Node: $(hostname), GPU: $(nvidia-smi --query-gpu=name --format=csv,noheader | head -1) ==="
 
-# Environment setup (Seawulf — modify as needed)
-module load anaconda3 2>/dev/null || true
-conda activate pretraining-trace 2>/dev/null || true
+# Activate conda env (module load first in SLURM; then activate by prefix)
+if command -v module &>/dev/null; then
+  module load miniconda/3
+fi
+source "$(conda info --base)/bin/activate" /lustre/nvwulf/home/solhapark/envs/infinigram
 
-cd ~/pretraining-trace
+cd /lustre/nvwulf/scratch/solhapark/pretraining-trace
 
 export HF_HOME="${HF_HOME:-$HOME/.cache/huggingface}"
 export TRANSFORMERS_CACHE="$HF_HOME/hub"
