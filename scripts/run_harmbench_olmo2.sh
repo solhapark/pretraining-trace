@@ -1,34 +1,31 @@
 #!/bin/bash
 #SBATCH --job-name=harmbench_olmo2
-#SBATCH --output=logs/harmbench_olmo2_%j.out
-#SBATCH --error=logs/harmbench_olmo2_%j.err
-#SBATCH --partition=gpu-long
+#SBATCH --output=logs/olmo2_1b/run_harmbench.out
+#SBATCH --error=logs/olmo2_1b/run_harmbench.err
+#SBATCH --partition=b40x4-long
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=48G
-#SBATCH --time=1-00:00:00
 
 # =============================================================================
-# HarmBench inference for a single OLMo 2 model (1B / 7B / 13B).
-# Submit one job per model with appropriate resources via --export=MODEL_KEY.
-# Override SBATCH defaults (mem, time) on the command line as needed.
+# HarmBench inference for a single OLMo 2 model.
+# Submit one job per model. --mem and --time MUST be specified on the command line.
+# Partition: b40x4-long (RTX Pro 6000 Blackwell, 96GB VRAM per GPU)
+# All models fit on a single GPU (96GB VRAM).
 #
 # GPU memory requirements (fp16):
-#   1B  : ~2 GB   |  7B : ~14 GB  |  13B : ~26 GB  |  32B : ~64 GB (separate script)
+#   1B : ~2 GB  |  7B : ~14 GB  |  13B : ~26 GB  |  32B : ~64 GB
 #
-# --- Base models (submit each separately) ---
+# --- Base models (run up to 3 in parallel) ---
 # sbatch --mem=16G  --time=4:00:00    --export=MODEL_KEY=olmo2-1b  run_harmbench_olmo2.sh
 # sbatch --mem=32G  --time=12:00:00   --export=MODEL_KEY=olmo2-7b  run_harmbench_olmo2.sh
 # sbatch --mem=48G  --time=1-00:00:00 --export=MODEL_KEY=olmo2-13b run_harmbench_olmo2.sh
+# sbatch --mem=96G  --time=1-00:00:00 --export=MODEL_KEY=olmo2-32b run_harmbench_olmo2.sh
 #
-# --- Instruct models (submit each separately) ---
+# --- Instruct models ---
 # sbatch --mem=16G  --time=4:00:00    --export=MODEL_KEY=olmo2-1b-instruct  run_harmbench_olmo2.sh
 # sbatch --mem=32G  --time=12:00:00   --export=MODEL_KEY=olmo2-7b-instruct  run_harmbench_olmo2.sh
-# sbatch --mem=48G  --time=2-00:00:00 --export=MODEL_KEY=olmo2-13b-instruct run_harmbench_olmo2.sh
-#
-# --- 32B models (use run_harmbench_olmo2_32b.sh instead) ---
-# sbatch run_harmbench_olmo2_32b.sh
-# sbatch --export=MODEL_KEY=olmo2-32b-instruct run_harmbench_olmo2_32b.sh
+# sbatch --mem=48G  --time=1-00:00:00 --export=MODEL_KEY=olmo2-13b-instruct run_harmbench_olmo2.sh
+# sbatch --mem=96G  --time=1-00:00:00 --export=MODEL_KEY=olmo2-32b-instruct run_harmbench_olmo2.sh
 # =============================================================================
 
 set -euo pipefail

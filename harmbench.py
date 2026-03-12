@@ -107,9 +107,9 @@ def safe_value(v):
 
 
 def setup_logger():
-    os.makedirs("logs", exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    log_filepath = f"logs/harmbench_{timestamp}.log"
+    log_dir = os.path.join("logs", model_key)
+    os.makedirs(log_dir, exist_ok=True)
+    log_filepath = os.path.join(log_dir, f"harmbench_{config}.log")
 
     logging.basicConfig(
         level=logging.INFO,
@@ -209,8 +209,8 @@ def load_model_and_tokenizer(model_info, logger):
 
 
 def main():
-    logger = setup_logger()
     args = parse_args()
+    logger = setup_logger()
 
     # Resolve model info
     model_info = MODEL_REGISTRY[args.model]
