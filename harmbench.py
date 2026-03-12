@@ -106,7 +106,7 @@ def safe_value(v):
     return v
 
 
-def setup_logger():
+def setup_logger(model_key, config):
     log_dir = os.path.join("logs", model_key)
     os.makedirs(log_dir, exist_ok=True)
     log_filepath = os.path.join(log_dir, f"harmbench_{config}.log")
@@ -210,7 +210,7 @@ def load_model_and_tokenizer(model_info, logger):
 
 def main():
     args = parse_args()
-    logger = setup_logger()
+    logger = setup_logger(args.model, args.config)
 
     # Resolve model info
     model_info = MODEL_REGISTRY[args.model]
