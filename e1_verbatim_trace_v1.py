@@ -10,28 +10,21 @@ Reference:
   - Project Overview: E1 definitions (LongestMatchLen, VerbatimCoverage, ExampleSnippets)
 
 Usage:
-    # GPT-J (local engine, Pile-train index)
+    # Phase 1 only (metrics only, no snippet retrieval)
     python e1_verbatim_trace.py \
-        --model gpt-j \
-        --index_dir ./index
+        --input results/gpt_j_6b/harmbench_standard_labeled.json \
+        --output results/gpt_j_6b/e1_verbatim_standard.json
 
-    # OLMo 2 (API backend, auto paths)
+    # Phase 1 + Phase 2 (metrics + snippet retrieval)
     python e1_verbatim_trace.py \
-        --model olmo2-7b
-
-    # OLMo 2 with snippet retrieval
-    python e1_verbatim_trace.py \
-        --model olmo2-7b \
+        --input results/gpt_j_6b/harmbench_standard_labeled.json \
+        --output results/gpt_j_6b/e1_verbatim_standard.json \
         --retrieve_snippets
-
-    # OLMo 2 with custom API index
-    python e1_verbatim_trace.py \
-        --model olmo2-7b \
-        --api_index v4_olmo-mix-1124_llama
 
     # With custom parameters
     python e1_verbatim_trace.py \
-        --model olmo2-7b \
+        --input results/gpt_j_6b/harmbench_standard_labeled.json \
+        --output results/gpt_j_6b/e1_verbatim_standard.json \
         --retrieve_snippets \
         --top_k_ratio 0.05 \
         --max_docs_per_span 10 \
@@ -48,7 +41,6 @@ import sys
 import time
 from datetime import datetime
 
-import requests
 from dotenv import load_dotenv
 
 # Path setup
@@ -62,179 +54,10 @@ if PKG_DIR not in sys.path:
 from transformers import AutoTokenizer
 
 
-# ===========================================================================
-# Model registry (mirrors harmbench.py for auto path generation)
-# ===========================================================================
-MODEL_REGISTRY = {
-    "gpt-j":              {"out_dir": "gpt_j_6b"},
-    "olmo2-1b":           {"out_dir": "olmo2_1b"},
-    "olmo2-7b":           {"out_dir": "olmo2_7b"},
-    "olmo2-13b":          {"out_dir": "olmo2_13b"},
-    "olmo2-32b":          {"out_dir": "olmo2_32b"},
-    "olmo2-1b-instruct":  {"out_dir": "olmo2_1b_instruct"},
-    "olmo2-7b-instruct":  {"out_dir": "olmo2_7b_instruct"},
-    "olmo2-13b-instruct": {"out_dir": "olmo2_13b_instruct"},
-    "olmo2-32b-instruct": {"out_dir": "olmo2_32b_instruct"},
-}
-
-
-# ===========================================================================
-# InfiniGramAPIEngine: HTTP API wrapper matching local engine interface
-# ===========================================================================
-class InfiniGramAPIEngine:
-    """Wrapper around the infini-gram HTTP API that mimics the local
-    InfiniGramEngine interface (count, find, get_doc_by_rank).
-
-    The API endpoint accepts JSON POST requests.  We use ``query_ids``
-    (list of token IDs) rather than ``query`` (string) so that
-    tokenization stays under our control — identical to the local engine
-    workflow.
-    """
-
-    API_URL = "https://api.infini-gram.io/"
-
-    def __init__(self, index: str, max_retries: int = 5,
-                 retry_delay: float = 2.0):
-        """
-        Parameters
-        ----------
-        index : str
-            API index name, e.g. ``"v4_olmo-mix-1124_llama"``.
-        max_retries : int
-            Number of retries on transient HTTP errors (429, 5xx).
-        retry_delay : float
-            Initial delay between retries (seconds); doubles on each retry.
-        """
-        self.index = index
-        self.max_retries = max_retries
-        self.retry_delay = retry_delay
-        self.session = requests.Session()
-
-    # ------------------------------------------------------------------
-    # Internal helper: POST with retry
-    # ------------------------------------------------------------------
-    def _post(self, payload: dict) -> dict:
-        """Send a POST request to the API with exponential-backoff retry."""
-        delay = self.retry_delay
-        for attempt in range(1, self.max_retries + 1):
-            try:
-                resp = self.session.post(
-                    self.API_URL,
-                    json=payload,
-                    timeout=60,
-                )
-                if resp.status_code == 200:
-                    data = resp.json()
-                    if "error" in data:
-                        raise RuntimeError(
-                            f"API returned error: {data['error']}")
-                    return data
-
-                # Retryable status codes
-                if resp.status_code in (429, 500, 502, 503, 504):
-                    if attempt < self.max_retries:
-                        time.sleep(delay)
-                        delay *= 2
-                        continue
-                    resp.raise_for_status()
-
-                # Non-retryable error
-                resp.raise_for_status()
-
-            except requests.exceptions.ConnectionError:
-                if attempt < self.max_retries:
-                    time.sleep(delay)
-                    delay *= 2
-                    continue
-                raise
-
-        # Should not reach here, but just in case
-        raise RuntimeError("API request failed after all retries")
-
-    # ------------------------------------------------------------------
-    # Public interface: count
-    # ------------------------------------------------------------------
-    def count(self, input_ids: list) -> dict:
-        """Count occurrences of the token ID sequence in the corpus.
-
-        If ``input_ids`` is empty, returns the total number of tokens
-        in the corpus (used to obtain CORPUS_SIZE).
-
-        Returns
-        -------
-        dict
-            ``{"count": int, "approx": bool}``
-        """
-        if len(input_ids) == 0:
-            # Empty string query → total token count
-            payload = {
-                "index": self.index,
-                "query_type": "count",
-                "query": "",
-            }
-        else:
-            payload = {
-                "index": self.index,
-                "query_type": "count",
-                "query_ids": input_ids,
-            }
-        return self._post(payload)
-
-    # ------------------------------------------------------------------
-    # Public interface: find
-    # ------------------------------------------------------------------
-    def find(self, input_ids: list) -> dict:
-        """Locate the token ID sequence in the corpus.
-
-        Returns
-        -------
-        dict
-            ``{"cnt": int, "segment_by_shard": [[start, end], ...]}``
-        """
-        payload = {
-            "index": self.index,
-            "query_type": "find",
-            "query_ids": input_ids,
-        }
-        return self._post(payload)
-
-    # ------------------------------------------------------------------
-    # Public interface: get_doc_by_rank
-    # ------------------------------------------------------------------
-    def get_doc_by_rank(self, s: int, rank: int,
-                        max_disp_len: int = 80) -> dict:
-        """Retrieve a document snippet by shard index and rank.
-
-        Returns
-        -------
-        dict
-            ``{"doc_ix": int, "doc_len": int, "metadata": str,
-               "token_ids": list, ...}``
-        """
-        payload = {
-            "index": self.index,
-            "query_type": "get_doc_by_rank",
-            "s": s,
-            "rank": rank,
-            "max_disp_len": max_disp_len,
-        }
-        return self._post(payload)
-
-
-# ===========================================================================
-# Logger setup
-# ===========================================================================
-def setup_logger(model_key: str, config: str = "standard"):
-    """Create logger with model-based log directory.
-
-    Log file: ``logs/{model_key}/e1_verbatim_{config}_{timestamp}.log``
-    """
-    log_dir = os.path.join("logs", model_key)
-    os.makedirs(log_dir, exist_ok=True)
+def setup_logger():
+    os.makedirs("logs", exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    log_filepath = os.path.join(
-        log_dir, f"e1_verbatim_{config}_{timestamp}.log"
-    )
+    log_filepath = f"logs/e1_verbatim_trace_{timestamp}.log"
 
     logging.basicConfig(
         level=logging.INFO,
@@ -253,31 +76,15 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="E1 Verbatim Trace: maximal matching spans + metrics"
     )
+    # I/O
+    parser.add_argument("--input", type=str, required=True,
+                        help="Input JSON (labeled HarmBench results with hb_label field)")
+    parser.add_argument("--output", type=str, required=True,
+                        help="Output JSON with E1 results appended")
 
-    # Model selection (required)
-    parser.add_argument("--model", type=str, required=True,
-                        choices=list(MODEL_REGISTRY.keys()),
-                        help="Model key (determines auto paths and log dir)")
-    parser.add_argument("--config", type=str, default="standard",
-                        help="HarmBench config name (default: standard)")
-
-    # I/O (auto-generated if not specified)
-    parser.add_argument("--input", type=str, default=None,
-                        help="Input JSON (labeled HarmBench results). "
-                             "Default: results/{model_dir}/harmbench_{config}_labeled.json")
-    parser.add_argument("--output", type=str, default=None,
-                        help="Output JSON with E1 results. "
-                             "Default: results/{model_dir}/e1_verbatim_{config}.json")
-
-    # Index config — local vs API
+    # Index config
     parser.add_argument("--index_dir", type=str, default=None,
-                        help="Path to local infini-gram index directory. "
-                             "If provided, use local InfiniGramEngine. "
-                             "If omitted, use HTTP API.")
-    parser.add_argument("--api_index", type=str,
-                        default="v4_olmo-mix-1124_llama",
-                        help="API index name (only used when --index_dir is "
-                             "not provided). Default: v4_olmo-mix-1124_llama")
+                        help="Path to local infini-gram index directory (default: ./index)")
     parser.add_argument("--tokenizer_name", type=str,
                         default="meta-llama/Llama-2-7b-hf",
                         help="Tokenizer matching the infini-gram index")
@@ -304,22 +111,7 @@ def parse_args():
     parser.add_argument("--all_records", action="store_true",
                         help="Process all records regardless of hb_label")
 
-    args = parser.parse_args()
-
-    # Auto-generate input/output paths if not specified
-    model_dir = MODEL_REGISTRY[args.model]["out_dir"]
-    if args.input is None:
-        args.input = os.path.join(
-            "results", model_dir,
-            f"harmbench_{args.config}_labeled.json"
-        )
-    if args.output is None:
-        args.output = os.path.join(
-            "results", model_dir,
-            f"e1_verbatim_{args.config}.json"
-        )
-
-    return args
+    return parser.parse_args()
 
 
 # ===========================================================================
@@ -395,7 +187,7 @@ def compute_maximal_matching_spans(engine, response_ids, num_shards, logger):
 # ===========================================================================
 # Span filtering: keep top-K by per-token unigram probability
 # ===========================================================================
-def compute_span_score(engine, span_ids, unigram_cache, corpus_size):
+def compute_span_score(engine, span_ids, unigram_cache):
     """
     Compute span unigram probability (OLMoTrace Step 2).
       - score = sum(log(count(t_i) / N))
@@ -403,18 +195,19 @@ def compute_span_score(engine, span_ids, unigram_cache, corpus_size):
       - NO per-token normalization: longer spans naturally get lower scores
         because each additional token contributes a negative log-probability term.
     """
+    CORPUS_SIZE = 383_299_358_652  # Pile-train, Llama-2 tokenizer (from engine.count([]))
+
     log_prob = 0.0
     for tid in span_ids:
         if tid not in unigram_cache:
             result = engine.count(input_ids=[tid])
             unigram_cache[tid] = result.get("count", 1)
-        log_prob += math.log(max(unigram_cache[tid], 1) / corpus_size)
+        log_prob += math.log(max(unigram_cache[tid], 1) / CORPUS_SIZE)
 
     return log_prob if span_ids else 0.0
 
 
-def filter_top_k_spans(engine, response_ids, maximal_spans, top_k_ratio,
-                        corpus_size, logger):
+def filter_top_k_spans(engine, response_ids, maximal_spans, top_k_ratio, logger):
     """
     Filter to keep top-K spans with lowest per-token unigram score.
       - K = ceil(top_k_ratio * L) where L = len(response_ids).
@@ -433,8 +226,7 @@ def filter_top_k_spans(engine, response_ids, maximal_spans, top_k_ratio,
     unigram_cache = {}
     scored_spans = []
     for (b, e) in maximal_spans:
-        score = compute_span_score(engine, response_ids[b:e], unigram_cache,
-                                   corpus_size)
+        score = compute_span_score(engine, response_ids[b:e], unigram_cache)
         scored_spans.append((b, e, score))
 
     # Sort by score ascending (lowest = most unique)
@@ -579,92 +371,16 @@ def compute_e1_metrics(response_ids, maximal_spans, top_k_spans, tokenizer):
 
 
 # ===========================================================================
-# Engine initialization helper
-# ===========================================================================
-def init_engine(args, tokenizer, logger):
-    """Initialize either a local InfiniGramEngine or an InfiniGramAPIEngine.
-
-    Returns
-    -------
-    engine : InfiniGramEngine or InfiniGramAPIEngine
-    num_shards : int
-    corpus_size : int
-    """
-    if args.index_dir is not None:
-        # ---- Local engine (GPT-J / Pile-train) ----
-        index_dir = args.index_dir
-        logger.info("Using LOCAL engine from: %s", index_dir)
-
-        if not os.path.isdir(index_dir):
-            logger.error("Index directory not found: %s", index_dir)
-            sys.exit(1)
-
-        from infini_gram.engine import InfiniGramEngine
-
-        engine = InfiniGramEngine(
-            s3_names=[],
-            index_dir=index_dir,
-            eos_token_id=tokenizer.eos_token_id,
-            version=4,
-            token_dtype="u16",
-        )
-
-        num_shards = len([f for f in os.listdir(index_dir)
-                          if f.startswith("tokenized.")])
-        logger.info("Detected %d shard(s) in index", num_shards)
-
-        # Get corpus size from engine
-        corpus_result = engine.count(input_ids=[])
-        corpus_size = corpus_result.get("count", 0)
-        logger.info("Corpus size (local): %d tokens", corpus_size)
-
-        if corpus_size == 0:
-            logger.warning("Corpus size is 0! Falling back to hardcoded "
-                           "Pile-train size: 383,299,358,652")
-            corpus_size = 383_299_358_652
-
-    else:
-        # ---- API engine (OLMo 2 / olmo-mix-1124) ----
-        logger.info("Using API engine: index=%s", args.api_index)
-        engine = InfiniGramAPIEngine(index=args.api_index)
-
-        # num_shards is not used by the algorithm itself, but we keep the
-        # variable for interface consistency.  The API handles sharding
-        # internally.
-        num_shards = 0
-
-        # Get corpus size via empty-string count query
-        logger.info("Querying corpus size from API (empty-string count)...")
-        corpus_result = engine.count(input_ids=[])
-        corpus_size = corpus_result.get("count", 0)
-        logger.info("Corpus size (API, %s): %d tokens",
-                    args.api_index, corpus_size)
-
-        if corpus_size == 0:
-            logger.error("Failed to retrieve corpus size from API. "
-                         "Cannot compute span scores.")
-            sys.exit(1)
-
-    return engine, num_shards, corpus_size
-
-
-# ===========================================================================
 # Main
 # ===========================================================================
 def main():
+    logger = setup_logger()
     args = parse_args()
-    logger = setup_logger(args.model, args.config)
 
     logger.info("=== E1 Verbatim Trace started at %s ===",
                 datetime.now().strftime("%a %b %d %I:%M:%S %p %Z %Y"))
     logger.info("Arguments: %s", vars(args))
     start_time = time.time()
-
-    # Determine backend mode for logging
-    if args.index_dir is not None:
-        logger.info("Backend: LOCAL engine (--index_dir=%s)", args.index_dir)
-    else:
-        logger.info("Backend: HTTP API (--api_index=%s)", args.api_index)
 
     # Load input data
     logger.info("Loading input from %s ...", args.input)
@@ -698,9 +414,27 @@ def main():
         add_eos_token=False,
     )
 
-    # Initialize engine (local or API)
-    engine, num_shards, corpus_size = init_engine(args, tokenizer, logger)
-    logger.info("CORPUS_SIZE = %d", corpus_size)
+    # Initialize infini-gram engine
+    index_dir = args.index_dir or os.path.join(SCRIPT_DIR, "index")
+    logger.info("Loading infini-gram engine from: %s", index_dir)
+
+    if not os.path.isdir(index_dir):
+        logger.error("Index directory not found: %s", index_dir)
+        sys.exit(1)
+
+    from infini_gram.engine import InfiniGramEngine
+
+    engine = InfiniGramEngine(
+        s3_names=[],
+        index_dir=index_dir,
+        eos_token_id=tokenizer.eos_token_id,
+        version=4,
+        token_dtype="u16",
+    )
+
+    num_shards = len([f for f in os.listdir(index_dir)
+                      if f.startswith("tokenized.")])
+    logger.info("Detected %d shard(s) in index", num_shards)
 
     # Process each record
     results = []
@@ -730,8 +464,7 @@ def main():
 
             # Filter to top-K spans
             top_k_spans = filter_top_k_spans(
-                engine, response_ids, maximal_spans, args.top_k_ratio,
-                corpus_size, logger
+                engine, response_ids, maximal_spans, args.top_k_ratio, logger
             )
 
             # Compute E1 metrics
