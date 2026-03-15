@@ -3,18 +3,24 @@
 #SBATCH --nodes=1
 #SBATCH --partition=b40x4-long
 #SBATCH --gres=gpu:1
-# Memory: copyright ~8G (hash-only); standard/contextual ~32G (vLLM+13B classifier). Override for copyright-only: sbatch --mem=8G ...
 #SBATCH --mem=32G
 #SBATCH --cpus-per-task=8
-#SBATCH --time=2-00:00
+#SBATCH --time=2-00:00:00
 #SBATCH --output=logs/harmbench_eval.out
 #SBATCH --error=logs/harmbench_eval.err
 
-# CONFIG: "copyright" (hash-based, no GPU) | "standard" | "contextual"
-# For standard/contextual, --cls_path is the HarmBench compliance classifier (Llama-2-13B-based, from Hugging Face).
-CONFIG="standard"
+# =============================================================================
+# HarmBench evaluation: assign compliance labels (hb_label) to model responses.
+# Classifier: cais/HarmBench-Llama-2-13b-cls (~26GB VRAM, 32GB RAM is sufficient)
+#
+# Runs all OLMo 2 models sequentially (classifier reloaded each time, ~1-2min overhead).
+# Edit the MODELS array below to select which models to evaluate.
+#
+# Usage:
+#   sbatch run_eval_harmbench.sh
+# =============================================================================
 
-# Activate conda env (module load first in SLURM; then activate by prefix)
+# Environment setup (nvwulf)
 if command -v module &>/dev/null; then
   module load miniconda/3
 fi
@@ -28,21 +34,38 @@ if [[ -f /lustre/nvwulf/scratch/solhapark/pretraining-trace/.env ]]; then
 fi
 
 cd /lustre/nvwulf/scratch/solhapark/pretraining-trace
-mkdir -p logs
+mkdir -p scripts/logs
 
-if [[ "$CONFIG" == "copyright" ]]; then
+export VLLM_WORKER_MULTIPROC_METHOD=spawn
+
+CONFIG="standard"
+
+# Models to evaluate
+MODELS=(
+  olmo2-1b
+  olmo2-7b
+  olmo2-13b
+  olmo2-32b
+  olmo2-1b-instruct
+  olmo2-7b-instruct
+  olmo2-13b-instruct
+  olmo2-32b-instruct
+)
+
+for m in "${MODELS[@]}"; do
+  echo "============================================================"
+  echo "=== Evaluating: $m, config=$CONFIG"
+  echo "=== Time: $(date)"
+  echo "============================================================"
+
   python eval_harmbench_labels.py \
-    --data_dir data/gpt_j_6b/harmbench_copyright.json \
-    --output_dir results/gpt_j_6b/harmbench_copyright_labeled.json
-    # --limit 10
-else
-  # standard or contextual: uses HarmBench classifier (cais/HarmBench-Llama-2-13b-cls) on GPU
-  # VLLM_WORKER_MULTIPROC_METHOD=spawn: prevents "Cannot re-initialize CUDA in forked subprocess"
-  export VLLM_WORKER_MULTIPROC_METHOD=spawn
-  python eval_harmbench_labels.py \
-    --data_dir data/gpt_j_6b/harmbench_${CONFIG}.json \
-    --output_dir results/gpt_j_6b/harmbench_${CONFIG}_labeled.json \
+    --model "$m" \
+    --config "$CONFIG" \
     --cls_path cais/HarmBench-Llama-2-13b-cls \
     --num_tokens 512
-    # --limit 10
-fi
+
+  echo "=== Done: $m ==="
+done
+
+echo ""
+echo "=== All evaluations finished: $(date) ==="
