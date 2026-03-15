@@ -15,19 +15,18 @@ Usage:
         --model gpt-j \
         --index_dir ./index
 
-    # OLMo 2 (API backend, auto paths)
-    python e1_verbatim_trace.py \
-        --model olmo2-7b
-
-    # OLMo 2 with snippet retrieval
-    python e1_verbatim_trace.py \
-        --model olmo2-7b \
-        --retrieve_snippets
-
     # OLMo 2 with custom API index
     python e1_verbatim_trace.py \
         --model olmo2-7b \
         --api_index v4_olmo-mix-1124_llama
+
+    # OLMo 2 with snippet retrieval
+    python e1_verbatim_trace.py \    # OLMo 2 with custom API index
+    python e1_verbatim_trace.py \
+        --model olmo2-7b \
+        --api_index v4_olmo-mix-1124_llama
+        --model olmo2-7b \
+        --retrieve_snippets
 
     # With custom parameters
     python e1_verbatim_trace.py \
@@ -62,10 +61,8 @@ if PKG_DIR not in sys.path:
 from transformers import AutoTokenizer
 
 
-# ===========================================================================
-# Model registry (mirrors harmbench.py for auto path generation)
-# ===========================================================================
-MODEL_REGISTRY = {
+# Model configuration
+MODEL_CONFIGS = {
     "gpt-j":              {"out_dir": "gpt_j_6b"},
     "olmo2-1b":           {"out_dir": "olmo2_1b"},
     "olmo2-7b":           {"out_dir": "olmo2_7b"},
@@ -82,37 +79,22 @@ MODEL_REGISTRY = {
 # InfiniGramAPIEngine: HTTP API wrapper matching local engine interface
 # ===========================================================================
 class InfiniGramAPIEngine:
-    """Wrapper around the infini-gram HTTP API that mimics the local
-    InfiniGramEngine interface (count, find, get_doc_by_rank).
+    """Wrapper around the infini-gram HTTP API that mimics the local InfiniGramEngine interface (count, find, get_doc_by_rank).
 
-    The API endpoint accepts JSON POST requests.  We use ``query_ids``
-    (list of token IDs) rather than ``query`` (string) so that
-    tokenization stays under our control — identical to the local engine
-    workflow.
+    The API endpoint accepts JSON POST requests.  We use ``query_ids`` (list of token IDs) rather than ``query`` (string) so that
+    tokenization stays under our control — identical to the local engine workflow.
     """
 
     API_URL = "https://api.infini-gram.io/"
 
     def __init__(self, index: str, max_retries: int = 5,
                  retry_delay: float = 2.0):
-        """
-        Parameters
-        ----------
-        index : str
-            API index name, e.g. ``"v4_olmo-mix-1124_llama"``.
-        max_retries : int
-            Number of retries on transient HTTP errors (429, 5xx).
-        retry_delay : float
-            Initial delay between retries (seconds); doubles on each retry.
-        """
         self.index = index
         self.max_retries = max_retries
         self.retry_delay = retry_delay
         self.session = requests.Session()
 
-    # ------------------------------------------------------------------
     # Internal helper: POST with retry
-    # ------------------------------------------------------------------
     def _post(self, payload: dict) -> dict:
         """Send a POST request to the API with exponential-backoff retry."""
         delay = self.retry_delay
@@ -128,10 +110,11 @@ class InfiniGramAPIEngine:
                     if "error" in data:
                         raise RuntimeError(
                             f"API returned error: {data['error']}")
+                    time.sleep(1)  # 500ms delay between API calls
                     return data
 
-                # Retryable status codes
-                if resp.status_code in (429, 500, 502, 503, 504):
+                # Retryable status codes (including 403 for rate limiting)
+                if resp.status_code in (403, 429, 500, 502, 503, 504):
                     if attempt < self.max_retries:
                         time.sleep(delay)
                         delay *= 2
@@ -151,20 +134,9 @@ class InfiniGramAPIEngine:
         # Should not reach here, but just in case
         raise RuntimeError("API request failed after all retries")
 
-    # ------------------------------------------------------------------
-    # Public interface: count
-    # ------------------------------------------------------------------
     def count(self, input_ids: list) -> dict:
         """Count occurrences of the token ID sequence in the corpus.
-
-        If ``input_ids`` is empty, returns the total number of tokens
-        in the corpus (used to obtain CORPUS_SIZE).
-
-        Returns
-        -------
-        dict
-            ``{"count": int, "approx": bool}``
-        """
+        If ``input_ids`` is empty, returns the total number of tokens in the corpus (used to obtain CORPUS_SIZE)."""
         if len(input_ids) == 0:
             # Empty string query → total token count
             payload = {
@@ -180,17 +152,8 @@ class InfiniGramAPIEngine:
             }
         return self._post(payload)
 
-    # ------------------------------------------------------------------
-    # Public interface: find
-    # ------------------------------------------------------------------
     def find(self, input_ids: list) -> dict:
-        """Locate the token ID sequence in the corpus.
-
-        Returns
-        -------
-        dict
-            ``{"cnt": int, "segment_by_shard": [[start, end], ...]}``
-        """
+        """Locate the token ID sequence in the corpus."""
         payload = {
             "index": self.index,
             "query_type": "find",
@@ -198,19 +161,8 @@ class InfiniGramAPIEngine:
         }
         return self._post(payload)
 
-    # ------------------------------------------------------------------
-    # Public interface: get_doc_by_rank
-    # ------------------------------------------------------------------
-    def get_doc_by_rank(self, s: int, rank: int,
-                        max_disp_len: int = 80) -> dict:
-        """Retrieve a document snippet by shard index and rank.
-
-        Returns
-        -------
-        dict
-            ``{"doc_ix": int, "doc_len": int, "metadata": str,
-               "token_ids": list, ...}``
-        """
+    def get_doc_by_rank(self, s: int, rank: int, max_disp_len: int = 80) -> dict:
+        """Retrieve a document snippet by shard index and rank."""
         payload = {
             "index": self.index,
             "query_type": "get_doc_by_rank",
@@ -226,14 +178,13 @@ class InfiniGramAPIEngine:
 # ===========================================================================
 def setup_logger(model_key: str, config: str = "standard"):
     """Create logger with model-based log directory.
-
     Log file: ``logs/{model_key}/e1_verbatim_{config}_{timestamp}.log``
     """
     log_dir = os.path.join("logs", model_key)
     os.makedirs(log_dir, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    # timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     log_filepath = os.path.join(
-        log_dir, f"e1_verbatim_{config}_{timestamp}.log"
+        log_dir, f"e1_verbatim_trace.log"
     )
 
     logging.basicConfig(
@@ -256,7 +207,7 @@ def parse_args():
 
     # Model selection (required)
     parser.add_argument("--model", type=str, required=True,
-                        choices=list(MODEL_REGISTRY.keys()),
+                        choices=list(MODEL_CONFIGS.keys()),
                         help="Model key (determines auto paths and log dir)")
     parser.add_argument("--config", type=str, default="standard",
                         help="HarmBench config name (default: standard)")
@@ -307,7 +258,7 @@ def parse_args():
     args = parser.parse_args()
 
     # Auto-generate input/output paths if not specified
-    model_dir = MODEL_REGISTRY[args.model]["out_dir"]
+    model_dir = MODEL_CONFIGS[args.model]["out_dir"]
     if args.input is None:
         args.input = os.path.join(
             "results", model_dir,
@@ -332,6 +283,10 @@ def get_longest_prefix_len(engine, suffix_ids, num_shards):
     """
     if not suffix_ids:
         return 0
+
+    # API has a 500-token limit per query; local engine has no limit.
+    if isinstance(engine, InfiniGramAPIEngine):
+        suffix_ids = suffix_ids[:500]
 
     # Try the full suffix first
     find_result = engine.find(input_ids=suffix_ids)
@@ -582,14 +537,7 @@ def compute_e1_metrics(response_ids, maximal_spans, top_k_spans, tokenizer):
 # Engine initialization helper
 # ===========================================================================
 def init_engine(args, tokenizer, logger):
-    """Initialize either a local InfiniGramEngine or an InfiniGramAPIEngine.
-
-    Returns
-    -------
-    engine : InfiniGramEngine or InfiniGramAPIEngine
-    num_shards : int
-    corpus_size : int
-    """
+    """Initialize either a local InfiniGramEngine or an InfiniGramAPIEngine."""
     if args.index_dir is not None:
         # ---- Local engine (GPT-J / Pile-train) ----
         index_dir = args.index_dir
@@ -702,13 +650,36 @@ def main():
     engine, num_shards, corpus_size = init_engine(args, tokenizer, logger)
     logger.info("CORPUS_SIZE = %d", corpus_size)
 
-    # Process each record
+    # Process each record (with incremental save + resume)
+    os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
+
+    # Resume: load existing results if output file exists
     results = []
+    completed_ids = set()
+    if os.path.isfile(args.output):
+        try:
+            with open(args.output, "r", encoding="utf-8") as f:
+                results = json.load(f)
+            for r in results:
+                if "error" not in r.get("e1", {}):
+                    completed_ids.add(r.get("id"))
+            logger.info("Resumed from %s: %d existing results (%d successful)",
+                        args.output, len(results), len(completed_ids))
+        except (json.JSONDecodeError, Exception) as e:
+            logger.warning("Could not load existing output (%s), starting fresh.", e)
+            results = []
+            completed_ids = set()
 
     for rec_idx, record in enumerate(target_records):
         rec_id = record.get("id", rec_idx)
         prompt = record.get("prompt", "")
         response = record.get("response", "")
+
+        # Skip if already successfully completed
+        if rec_id in completed_ids:
+            logger.info("[%d/%d] Skipping record id=%s (already completed)",
+                        rec_idx + 1, len(target_records), rec_id)
+            continue
 
         logger.info("=" * 70)
         logger.info("[%d/%d] Processing record id=%s",
@@ -804,11 +775,10 @@ def main():
 
         results.append(result)
 
-    # Save output
-    os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
-    logger.info("Saving %d results to %s ...", len(results), args.output)
-    with open(args.output, "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
+        # Incremental save after each record
+        logger.info("  Saving %d results to %s ...", len(results), args.output)
+        with open(args.output, "w", encoding="utf-8") as f:
+            json.dump(results, f, ensure_ascii=False, indent=2)
 
     # Summary
     logger.info("=" * 70)

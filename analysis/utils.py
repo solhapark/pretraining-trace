@@ -164,3 +164,85 @@ def build_row(r):
         'topk_ge10': sum(1 for l in topk_lens if l >= 10),
         'repetition_ratio': repetition,
     }
+
+
+def display_snippets(e1_result, record_id, max_snippet_chars=None, unique_only=False):
+    """Display span texts and their corpus snippets for a given record."""
+    # Find record by id
+    rec = None
+    for r in e1_result:
+        if r.get("id") == record_id:
+            rec = r
+            break
+    if rec is None:
+        print(f"Record id={record_id} not found.")
+        return
+
+    # Header
+    prompt = rec.get("prompt", "")
+    response = rec.get("response", "")
+    e1 = rec.get("e1", {})
+    print("=" * 80)
+    print(f"Record id={record_id}")
+    print(f"  Prompt:   {prompt[:120]}{'...' if len(prompt) > 120 else ''}")
+    print(f"  Response: {len(response)} chars")
+    print(f"  LongestMatchLen:  {e1.get('LongestMatchLen')}")
+    print(f"  VerbatimCoverage: {e1.get('VerbatimCoverage')}")
+    print(f"  Maximal spans:    {e1.get('num_maximal_spans')}")
+    print(f"  Top-K spans:      {e1.get('num_top_k_spans')}")
+    # print("-" * 80)
+    # print("Response text:")
+    # print(response)
+    print("=" * 80)
+
+    snippets_by_span = e1.get("ExampleSnippets", [])
+    if not snippets_by_span:
+        print("  No ExampleSnippets found (Phase 2 not run?).")
+        return
+
+    # Deduplicate by span_text if requested
+    if unique_only:
+        seen_texts = set()
+        filtered = []
+        for span_info in snippets_by_span:
+            text = span_info.get("span_text", "")
+            if text not in seen_texts:
+                seen_texts.add(text)
+                filtered.append(span_info)
+        total_before = len(snippets_by_span)
+        snippets_by_span = filtered
+        print(f"\n  [unique_only] {len(snippets_by_span)} unique spans "
+              f"(from {total_before} total)")
+
+    for i, span_info in enumerate(snippets_by_span):
+        span_text = span_info.get("span_text", "")
+        span_len = span_info.get("span_length", 0)
+        span_begin = span_info.get("span_begin", "?")
+        span_end = span_info.get("span_end", "?")
+        num_snips = span_info.get("num_snippets", 0)
+
+        print(f"\n--- Span {i} (tokens {span_begin}:{span_end}, "
+              f"length={span_len}, {num_snips} snippet(s)) ---")
+        print(f"  span_text: \"{span_text}\"")
+
+        for j, snip in enumerate(span_info.get("snippets", [])):
+            doc_ix = snip.get("doc_ix", "?")
+            doc_len = snip.get("doc_len", "?")
+            metadata = snip.get("metadata", "")
+            snippet_text = snip.get("snippet_text", "")
+
+            if max_snippet_chars and len(snippet_text) > max_snippet_chars:
+                display_text = snippet_text[:max_snippet_chars] + "..."
+            else:
+                display_text = snippet_text
+
+            print(f"\n    Snippet {j}:")
+            print(f"      doc_ix:   {doc_ix}")
+            print(f"      doc_len:  {doc_len} tokens")
+            if metadata:
+                print(f"      metadata: {metadata}")
+            print(f"      text:     \"{display_text}\"")
+
+    print(f"\n{'=' * 80}")
+    total = sum(s.get("num_snippets", 0) for s in snippets_by_span)
+    print(f"Total: {len(snippets_by_span)} spans, {total} snippets")

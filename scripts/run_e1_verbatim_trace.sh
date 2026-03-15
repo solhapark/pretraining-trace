@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name=E1_verbatim_trace
 #SBATCH --nodes=1
-#SBATCH --partition=short-40core
+#SBATCH --partition=hbm-short-96core
 #SBATCH --mem=8G
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=1
 #SBATCH --time=4:00:00
 #SBATCH --output=logs/e1_verbatim_trace.out
 #SBATCH --error=logs/e1_verbatim_trace.err
@@ -35,9 +35,15 @@ cd /gpfs/scratch/solhapark/pretraining-trace
 
 
 # Phase 1 + Phase 2 (metrics + snippet retrieval) — run after Phase 1 works
+# python e1_verbatim_trace.py \
+#     --input results/gpt_j_6b/harmbench_standard_labeled.json \
+#     --output results/gpt_j_6b/e1_verbatim_standard.json \
+#     --top_k_ratio 0.05 \
+#     --retrieve_snippets \
+#     --all_records
+
+
 python e1_verbatim_trace.py \
-    --input results/gpt_j_6b/harmbench_standard_labeled.json \
-    --output results/gpt_j_6b/e1_verbatim_standard.json \
-    --top_k_ratio 0.05 \
-    --retrieve_snippets \
-    --all_records
+    --model olmo2-1b \
+    --api_index v4_olmo-mix-1124_llama \
+    --limit 1
