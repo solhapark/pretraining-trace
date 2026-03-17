@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=harmbench_olmo2
-#SBATCH --output=logs/olmo2_32b/run_harmbench.out
-#SBATCH --error=logs/olmo2_32b/run_harmbench.err
+#SBATCH --output=logs/run_harmbench.out
+#SBATCH --error=logs/run_harmbench.err
 #SBATCH --partition=b40x4-long
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4

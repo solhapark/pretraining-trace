@@ -29,16 +29,13 @@ cd /gpfs/scratch/solhapark/pretraining-trace
 
 # Phase 1 only (metrics, no snippet retrieval) — faster, start here
 # python e1_verbatim_trace.py \
-#     --input results/gpt_j_6b/harmbench_standard_labeled.json \
-#     --output results/gpt_j_6b/E1_verbatim_standard.json \
-#     --top_k_ratio 0.05
-
+#     --model gpt-j \
+#     --index_dir ./index
 
 # Phase 1 + Phase 2 (metrics + snippet retrieval) — run after Phase 1 works
 # python e1_verbatim_trace.py \
-#     --input results/gpt_j_6b/harmbench_standard_labeled.json \
-#     --output results/gpt_j_6b/e1_verbatim_standard.json \
-#     --top_k_ratio 0.05 \
+#     --model gpt-j \
+#     --index_dir ./index \
 #     --retrieve_snippets \
 #     --all_records
 
@@ -46,4 +43,5 @@ cd /gpfs/scratch/solhapark/pretraining-trace
 python e1_verbatim_trace.py \
     --model olmo2-1b \
     --api_index v4_olmo-mix-1124_llama \
+    --retrieve_snippets \
     --limit 2

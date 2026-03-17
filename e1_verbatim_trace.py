@@ -178,7 +178,7 @@ class InfiniGramAPIEngine:
 # ===========================================================================
 def setup_logger(model_key: str, config: str = "standard"):
     """Create logger with model-based log directory.
-    Log file: ``logs/{model_key}/e1_verbatim_{config}_{timestamp}.log``
+    Log file: ``logs/{model_key}/e1_verbatim_trace.log``
     """
     log_dir = os.path.join("logs", model_key)
     os.makedirs(log_dir, exist_ok=True)
@@ -346,7 +346,6 @@ def compute_maximal_matching_spans(engine, response_ids, num_shards, logger):
     logger.info("  Computing longest matching prefix for %d positions...", L)
 
     # Step 1: For each position, get longest matching prefix length
-
     prefix_lens = []
     for b in range(L):
         plen = get_longest_prefix_len(engine, response_ids[b:], num_shards)
@@ -591,8 +590,7 @@ def init_engine(args, tokenizer, logger):
         logger.info("Corpus size (local): %d tokens", corpus_size)
 
         if corpus_size == 0:
-            logger.warning("Corpus size is 0! Falling back to hardcoded "
-                           "Pile-train size: 383,299,358,652")
+            logger.warning("Corpus size is 0! Falling back to hardcoded. Pile-train size: 383,299,358,652")
             corpus_size = 383_299_358_652
 
     else:
@@ -600,9 +598,8 @@ def init_engine(args, tokenizer, logger):
         logger.info("Using API engine: index=%s", args.api_index)
         engine = InfiniGramAPIEngine(index=args.api_index)
 
-        # num_shards is not used by the algorithm itself, but we keep the
-        # variable for interface consistency.  The API handles sharding
-        # internally.
+        # num_shards is not used by the algorithm itself, but we keep the variable for interface consistency.
+        # The API handles sharding internally.
         num_shards = 0
 
         # Get corpus size via empty-string count query
