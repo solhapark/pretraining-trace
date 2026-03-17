@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=E1_verbatim_trace
 #SBATCH --nodes=1
-#SBATCH --partition=hbm-short-96core
+#SBATCH --partition=short-96core
 #SBATCH --mem=8G
 #SBATCH --cpus-per-task=1
 #SBATCH --time=4:00:00
@@ -46,4 +46,4 @@ cd /gpfs/scratch/solhapark/pretraining-trace
 python e1_verbatim_trace.py \
     --model olmo2-1b \
     --api_index v4_olmo-mix-1124_llama \
-    --limit 1
+    --limit 2

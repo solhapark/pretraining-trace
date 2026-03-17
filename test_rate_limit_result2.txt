@@ -1,0 +1,10 @@
+(infinigram) [solhapark@milan1 pretraining-trace]$ python test_rate_limit2.py 
+delay=0.6s | 82 calls in 56.3s | success=81 fail=1 | positions=8
+  → FAILED at position 8
+  (waiting 120s...)
+delay=0.7s | 83 calls in 65.3s | success=82 fail=1 | positions=8
+  → FAILED at position 8
+  (waiting 120s...)
+delay=0.8s | 85 calls in 75.0s | success=84 fail=1 | positions=8
+  → FAILED at position 8
+  (waiting 120s...)
