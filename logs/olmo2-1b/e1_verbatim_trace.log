@@ -426,3 +426,5 @@
 2026-03-17 20:40:05,461 - __main__ - INFO -   Response length: 5708 chars
 2026-03-17 20:40:05,463 - __main__ - INFO -   Tokenized response: 1239 tokens
 2026-03-17 20:40:05,463 - __main__ - INFO -   Computing longest matching prefix for 1239 positions...
+2026-03-17 20:57:30,064 - __main__ - INFO -     Position 400 / 1239 done (current prefix_len=8)
+2026-03-17 20:58:45,059 - __main__ - INFO -     Position 200 / 1239 done (current prefix_len=7)

@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """
-retrieve_full_docs.py
-=====================
 For all unique doc_ixs in 9 partially compliant records,
 fetch the full document from the local InfiniGram engine and save as JSON.
 
 Usage:
-    python retrieve_full_docs.py \
+    python e1_retrieve_full_docs.py \
         --input_json results/gpt_j_6b/e1_verbatim_standard_9cases.json \
         --index_dir ./index \
         --output_json data/gpt_j_6b/full_docs_9cases.json
@@ -18,6 +16,7 @@ import os
 import sys
 import time
 from pathlib import Path
+from transformers import AutoTokenizer
 
 # Path setup (same as e1_retrieve_snippets.py)
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -64,7 +63,7 @@ def collect_unique_doc_ix(records):
     return doc_info
 
 
-def retrieve_full_doc(engine, doc_ix, expected_doc_len):
+def retrieve_full_doc(engine, tokenizer, doc_ix, expected_doc_len):
     """Retrieve full document using get_doc_by_rank().
     
     Returns:
@@ -88,15 +87,15 @@ def retrieve_full_doc(engine, doc_ix, expected_doc_len):
         metadata = result.get('metadata', '')
         
         # Decode token IDs to text
-        from transformers import AutoTokenizer
-        # (tokenizer will be passed in instead — see below)
+        full_text = tokenizer.decode(token_ids)
         
         return {
             'doc_ix': result.get('doc_ix', doc_ix),
             'doc_len': result.get('doc_len', len(token_ids)),
             'disp_len': result.get('disp_len', 0),
             'metadata': metadata,
-            'full_token_ids': token_ids
+            'full_token_ids': token_ids,
+            'full_text': full_text
         }
     except Exception as e:
         print(f"  ERROR retrieving doc_ix={doc_ix}: {e}", file=sys.stderr)
@@ -144,15 +143,20 @@ def main():
         token_dtype="u16",
     )
     print(f"  Engine ready.")
+
+    # 5. Load tokenizer (once, outside loop)
+    print(f"Loading tokenizer: {args.tokenizer}")
+    tokenizer = AutoTokenizer.from_pretrained(args.tokenizer)
+    print(f"  Tokenizer ready. vocab_size={tokenizer.vocab_size}")
     
-    # 5. Retrieve full documents
+    # 6. Retrieve full documents
     print(f"\nRetrieving {len(remaining)} documents...")
     start_time = time.time()
     success = 0
     errors = 0
     
     for i, (doc_ix, expected_len) in enumerate(sorted(remaining.items())):
-        doc_result = retrieve_full_doc(engine, doc_ix, expected_len)
+        doc_result = retrieve_full_doc(engine, tokenizer, doc_ix, expected_len)
         
         if doc_result is not None:
             existing_docs[str(doc_ix)] = doc_result
@@ -181,7 +185,7 @@ def main():
                 json.dump(existing_docs, f, ensure_ascii=False)
             print(f"  [Incremental save: {len(existing_docs)} docs]")
     
-    # 6. Final save
+    # 7. Final save
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, 'w') as f:
         json.dump(existing_docs, f, ensure_ascii=False)
