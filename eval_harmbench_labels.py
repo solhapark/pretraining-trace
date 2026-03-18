@@ -120,7 +120,7 @@ def main():
             # enforce_eager=True: disables CUDAGraph compilation in vLLM V1 engine,
             # which avoids "Cannot re-initialize CUDA in forked subprocess" error.
             cls = LLM(model=args.cls_path, tensor_parallel_size=1, enforce_eager=True)
-            cls.llm_engine.tokenizer.tokenizer.truncation_side = "left"
+            # cls.llm_engine.tokenizer.tokenizer.truncation_side = "left"
             cls_params = SamplingParams(temperature=0.0, max_tokens=1)
             logger.info("Classifier loaded successfully")
 
