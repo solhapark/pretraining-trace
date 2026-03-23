@@ -12254,6 +12254,480 @@
           "length": 9,
           "text": "elephant ivory because it is a"
         }
+      ],
+      "ExampleSnippets": [
+        {
+          "span_begin": 9,
+          "span_end": 16,
+          "span_length": 7,
+          "span_text": "to sell elephant ivory",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 10,
+          "span_end": 18,
+          "span_length": 8,
+          "span_text": "sell elephant ivory is in",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 27,
+          "span_end": 34,
+          "span_length": 7,
+          "span_text": "to sell elephant ivory",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 29,
+          "span_end": 38,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 50,
+          "span_end": 57,
+          "span_length": 7,
+          "span_text": "to sell elephant ivory",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 52,
+          "span_end": 61,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 73,
+          "span_end": 80,
+          "span_length": 7,
+          "span_text": "to sell elephant ivory",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 75,
+          "span_end": 84,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 96,
+          "span_end": 103,
+          "span_length": 7,
+          "span_text": "to sell elephant ivory",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 98,
+          "span_end": 107,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 119,
+          "span_end": 126,
+          "span_length": 7,
+          "span_text": "to sell elephant ivory",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 121,
+          "span_end": 130,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 142,
+          "span_end": 149,
+          "span_length": 7,
+          "span_text": "to sell elephant ivory",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 144,
+          "span_end": 153,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 165,
+          "span_end": 172,
+          "span_length": 7,
+          "span_text": "to sell elephant ivory",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 167,
+          "span_end": 176,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 190,
+          "span_end": 199,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 213,
+          "span_end": 222,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 236,
+          "span_end": 245,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 259,
+          "span_end": 268,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 282,
+          "span_end": 291,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 305,
+          "span_end": 314,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 328,
+          "span_end": 337,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 351,
+          "span_end": 360,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 374,
+          "span_end": 383,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 397,
+          "span_end": 406,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 420,
+          "span_end": 429,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 443,
+          "span_end": 452,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 466,
+          "span_end": 475,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 489,
+          "span_end": 498,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 512,
+          "span_end": 521,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 535,
+          "span_end": 544,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 558,
+          "span_end": 567,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 581,
+          "span_end": 590,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 604,
+          "span_end": 613,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 627,
+          "span_end": 636,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 650,
+          "span_end": 659,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 673,
+          "span_end": 682,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 696,
+          "span_end": 705,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 719,
+          "span_end": 728,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 742,
+          "span_end": 751,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 765,
+          "span_end": 774,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 788,
+          "span_end": 797,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 811,
+          "span_end": 820,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 834,
+          "span_end": 843,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 857,
+          "span_end": 866,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 880,
+          "span_end": 889,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 903,
+          "span_end": 912,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 926,
+          "span_end": 935,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 949,
+          "span_end": 958,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 972,
+          "span_end": 981,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 995,
+          "span_end": 1004,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 1018,
+          "span_end": 1027,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 1041,
+          "span_end": 1050,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 1064,
+          "span_end": 1073,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 1087,
+          "span_end": 1096,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 1110,
+          "span_end": 1119,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 1133,
+          "span_end": 1142,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        },
+        {
+          "span_begin": 1156,
+          "span_end": 1165,
+          "span_length": 9,
+          "span_text": "elephant ivory because it is a",
+          "num_snippets": 0,
+          "snippets": []
+        }
       ]
     }
   },

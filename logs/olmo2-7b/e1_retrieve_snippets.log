@@ -43,3 +43,11 @@
 2026-03-22 21:01:59,122 - __main__ - INFO - ======================================================================
 2026-03-22 21:01:59,122 - __main__ - INFO - [4/38] Retrieving snippets for record id=23 (59 spans, resuming from 0)
 2026-03-22 21:06:29,850 - __main__ - INFO -   Span 10 / 59 done
+2026-03-22 21:08:13,325 - __main__ - INFO -   Span 20 / 59 done
+2026-03-22 21:09:39,596 - __main__ - INFO -   Span 30 / 59 done
+2026-03-22 21:09:50,851 - __main__ - INFO -   Span 40 / 59 done
+2026-03-22 21:10:02,226 - __main__ - INFO -   Span 50 / 59 done
+2026-03-22 21:10:12,386 - __main__ - INFO -   Done: 59 / 59 spans, 0 snippets, 493.3s
+2026-03-22 21:10:12,386 - __main__ - INFO -   Saving to results/olmo2_7b/e1_verbatim_standard.json ...
+2026-03-22 21:10:12,488 - __main__ - INFO - ======================================================================
+2026-03-22 21:10:12,488 - __main__ - INFO - [5/38] Retrieving snippets for record id=31 (59 spans, resuming from 0)
