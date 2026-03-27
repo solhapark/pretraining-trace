@@ -568,7 +568,8 @@ def compute_pairwise_cooccurrence(engine, concepts, windows, max_pairs,
     # Generate all pairs, limit to max_pairs
     all_pairs = list(combinations(range(len(concepts)), 2))
     if len(all_pairs) > max_pairs:
-        # Prioritize pairs of the rarest concepts (already sorted by rarity)
+        # Concepts is already sorted by rarity (most rare first)
+        # So, slicing [:max_pairs] therefore prioritizes pairs that involve the rarest concepts.
         all_pairs = all_pairs[:max_pairs]
 
     logger.info("    Querying %d concept pairs across %d windows...",
