@@ -477,7 +477,16 @@ def retrieve_snippets_for_span(engine, span_ids, max_docs, max_disp_len, tokeniz
                     "metadata": doc.get("metadata", ""),
                 }
 
-                if "token_ids" in doc and tokenizer is not None:
+                if isinstance(engine, InfiniGramAPIEngine) and "spans" in doc:
+                    # API mode: snippet text is in spans[0][0]
+                    spans_data = doc.get("spans", [])
+                    if spans_data and spans_data[0][0]:
+                        snippet_info["snippet_text"] = spans_data[0][0]
+                    else:
+                        snippet_info["snippet_text"] = ""
+                    snippet_info["snippet_token_ids"] = doc.get("token_ids", [])
+                elif "token_ids" in doc and tokenizer is not None:
+                    # Local mode: decode token_ids
                     try:
                         snippet_info["snippet_text"] = tokenizer.decode(
                             doc["token_ids"], skip_special_tokens=False
