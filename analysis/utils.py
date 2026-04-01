@@ -767,3 +767,21 @@ def compare_labels(record_id: int, all_records, model: str,
 
     print()
     print("=" * 80)
+
+
+def inspect_record(model_dir, record_id, span_idx=None):
+    """Quick wrapper to view a specific record's span details."""
+    from utils import view_span
+    RESULTS_DIR = '../results'
+    with open(f"{RESULTS_DIR}/{model_dir}/e1_verbatim_standard.json") as f:
+        records = json.load(f)
+    
+    label_csv = f"{RESULTS_DIR}/{model_dir}/span_safety_labels.csv"
+    
+    view_span(
+        record_id=record_id,
+        all_records=records,
+        label_csv_path=label_csv,
+        model=model_dir,
+        span_idx=span_idx,
+    )
