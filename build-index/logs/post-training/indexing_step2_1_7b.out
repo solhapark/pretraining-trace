@@ -1,0 +1,121 @@
+=== Step 2.1 (make-part) started at Sat Apr  4 17:45:22 EDT 2026 ===
+Using 1 batches of 28 jobs each, for a total of 28 jobs.
+Ratio: 4, Token width: 2
+Processing batch 0 to 28...
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Opening up the dataset files
+Loading part of file from byte 456211776 to 570364720
+Loading part of file from byte 3079429488 to 3193482414
+Loading part of file from byte 2052952992 to 2167105936
+Loading part of file from byte 1938900048 to 2053052992
+Loading part of file from byte 114052944 to 228205888
+Loading part of file from byte 684317664 to 798470608
+Loading part of file from byte 1254582384 to 1368735328
+Loading part of file from byte 2509164768 to 2623317712
+Loading part of file from byte 1482688272 to 1596841216
+Loading part of file from byte 2167005936 to 2281158880
+Loading part of file from byte 228105888 to 342258832
+Loading part of file from byte 1710794160 to 1824947104
+Loading part of file from byte 912423552 to 1026576496
+Loading part of file from byte 2395111824 to 2509264768
+Loading part of file from byte 798370608 to 912523552
+Loading part of file from byte 2737270656 to 2851423600
+Loading part of file from byte 342158832 to 456311776
+Loading part of file from byte 1026476496 to 1140629440
+Loading part of file from byte 1140529440 to 1254682384
+Loading part of file from byte 0 to 114152944
+Loading part of file from byte 1824847104 to 1939000048
+Loading part of file from byte 2281058880 to 2395211824
+Loading part of file from byte 2965376544 to 3079529488
+Loading part of file from byte 2623217712 to 2737370656
+Loading part of file from byte 570264720 to 684417664
+Loading part of file from byte 2851323600 to 2965476544
+Loading part of file from byte 1596741216 to 1710894160
+Loading part of file from byte 1368635328 to 1482788272
+Writing the suffix array at time t=15072ms
+And finished at time t=15141ms
+Writing the suffix array at time t=16048ms
+And finished at time t=16135ms
+Writing the suffix array at time t=16537ms
+Writing the suffix array at time t=16567ms
+And finished at time t=16627ms
+And finished at time t=16633ms
+Writing the suffix array at time t=16662ms
+Writing the suffix array at time t=16681ms
+And finished at time t=16719ms
+And finished at time t=16744ms
+Writing the suffix array at time t=16854ms
+Writing the suffix array at time t=16857ms
+And finished at time t=16916ms
+And finished at time t=16922ms
+Writing the suffix array at time t=17117ms
+And finished at time t=17198ms
+Writing the suffix array at time t=17250ms
+Writing the suffix array at time t=17266ms
+Writing the suffix array at time t=17296ms
+And finished at time t=17332ms
+And finished at time t=17348ms
+And finished at time t=17377ms
+Writing the suffix array at time t=17637ms
+Writing the suffix array at time t=17663ms
+Writing the suffix array at time t=17664ms
+Writing the suffix array at time t=17715ms
+And finished at time t=17758ms
+And finished at time t=17768ms
+And finished at time t=17777ms
+And finished at time t=17804ms
+Writing the suffix array at time t=17843ms
+Writing the suffix array at time t=17889ms
+And finished at time t=17900ms
+And finished at time t=17950ms
+Writing the suffix array at time t=17963ms
+Writing the suffix array at time t=18000ms
+And finished at time t=18015ms
+Writing the suffix array at time t=18030ms
+Writing the suffix array at time t=18044ms
+Writing the suffix array at time t=18045ms
+And finished at time t=18080ms
+And finished at time t=18085ms
+Writing the suffix array at time t=18092ms
+Writing the suffix array at time t=18108ms
+Writing the suffix array at time t=18120ms
+And finished at time t=18123ms
+And finished at time t=18126ms
+Writing the suffix array at time t=18129ms
+Writing the suffix array at time t=18156ms
+And finished at time t=18173ms
+And finished at time t=18176ms
+And finished at time t=18182ms
+And finished at time t=18184ms
+And finished at time t=18206ms
+Done: 28 parts built, 0 skipped (already present).
+=== Step 2.1 (make-part) finished at Sat Apr  4 17:45:41 EDT 2026 ===
+=== Elapsed time: 0 days 00:00:19 (total 19 seconds)
+
+=== All 28 parts complete. Next step: Run run_indexing_step2_2_merge.sh ===

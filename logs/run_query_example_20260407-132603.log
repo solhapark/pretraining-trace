@@ -1,0 +1,20 @@
+2026-04-07 13:26:03,896 - __main__ - INFO - Logging to file: logs/run_query_example_20260407-132603.log
+2026-04-07 13:26:03,896 - __main__ - INFO - === Job started at Tue Apr 07 01:26:03 PM  2026 ===
+2026-04-07 13:26:03,898 - __main__ - INFO - Loading tokenizer: meta-llama/Llama-2-7b-hf
+2026-04-07 13:26:04,009 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-07 13:26:04,067 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-07 13:26:04,102 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-07 13:26:04,139 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/meta-llama/Llama-2-7b-hf/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-07 13:26:04,177 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/meta-llama/Llama-2-7b-hf/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-07 13:26:04,351 - __main__ - INFO - Loading engine from index: /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124
+2026-04-07 13:26:04,357 - __main__ - INFO - Query: 'natural language processing'
+2026-04-07 13:26:04,357 - __main__ - INFO - Token IDs: [5613, 4086, 9068]
+2026-04-07 13:26:04,357 - __main__ - INFO - === Step 1: Count query ===
+2026-04-07 13:26:04,413 - __main__ - INFO - Count: {'count': 112895, 'approx': False}
+2026-04-07 13:26:04,413 - __main__ - INFO - === Step 2: Find query ===
+2026-04-07 13:26:04,413 - __main__ - INFO - Find (segment_by_shard): {'cnt': 112895, 'segment_by_shard': [(99427276681, 99427389576)]}
+2026-04-07 13:26:04,413 - __main__ - INFO - === Step 3: Get document by rank ===
+2026-04-07 13:26:04,432 - __main__ - INFO - First matching doc (shard 0, rank 99427276681): {'doc_ix': 111793220, 'doc_len': 5498, 'disp_len': 20, 'needle_offset': 10, 'metadata': '{"path": "pes2o/pes2o-0013.json.gz", "linenum": 422149, "metadata": {"added": "2014-07-01T00:00:00.000Z", "created": "1999-01-01T00:00:00.000Z", "id": "3141663", "metadata": {"extfieldsofstudy": ["Computer Science"], "provenance": "pes2o_v2-0013.json.gz:422150", "s2fieldsofstudy": ["Computer Science"], "sha1": "ac20da2a10ef8b07679c8dc951ed342b704a72fd", "year": 1998}, "source": "s2", "version": "v3-fos"}}\n', 'token_ids': [23521, 313, 29956, 7230, 29897, 502, 263, 6555, 1108, 286, 5613, 4086, 9068, 512, 1797, 363, 23226, 304, 367, 2221], 'blocked': False}
+2026-04-07 13:26:04,432 - __main__ - INFO - Decoded text: mn (WSD) us a central problem m natural language processing In order for computers to be able
+2026-04-07 13:26:04,432 - __main__ - INFO - === Job finished at Tue Apr 07 01:26:04 PM  2026 ===
+2026-04-07 13:26:04,432 - __main__ - INFO - === Elapsed time: 0 days 00:00:00 (total 0.536 seconds) ===

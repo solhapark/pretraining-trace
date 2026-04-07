@@ -20,7 +20,7 @@ from transformers import AutoTokenizer
 from infini_gram.engine import InfiniGramEngine
 
 # Config (same as --save_dir when you ran indexing.py)
-INDEX_DIR = os.path.join(SCRIPT_DIR, "index")
+INDEX_DIR = os.path.join(SCRIPT_DIR, "index/dolmino-mix-1124")
 # Tokenizer must match the one used when building the index. Set to None for byte-level index.
 TOKENIZER_NAME = "meta-llama/Llama-2-7b-hf"
 QUERY_STR = "natural language processing"

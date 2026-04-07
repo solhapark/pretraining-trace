@@ -1,0 +1,9 @@
+=== Step 2.2 (merge) started at Mon Apr  6 09:01:28 PM EDT 2026 ===
+Ratio: 5, Token width: 2
+Parts directory: /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/parts-0
+Part file count: 1792
+tokenized.0 size (bytes): 213142608112
+ulimit -n: 65536
+Executing: /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/infini-gram/pkg/target/release/rust_indexing merge --data-file /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/tokenized.0 --parts-dir /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/parts-0 --merged-dir /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/merged-0 --num-threads 96 --hacksize 100000 --ratio 5 --token-width 2
+=== Step 2.2 (merge) finished at Tue Apr  7 01:47:19 AM EDT 2026 ===
+=== Elapsed time: 0 days 04:45:51 (total 17151 seconds)

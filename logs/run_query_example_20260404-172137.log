@@ -1,0 +1,20 @@
+2026-04-04 17:21:37,110 - __main__ - INFO - Logging to file: logs/run_query_example_20260404-172137.log
+2026-04-04 17:21:37,111 - __main__ - INFO - === Job started at Sat Apr 04 05:21:37 PM  2026 ===
+2026-04-04 17:21:37,111 - __main__ - INFO - Loading tokenizer: meta-llama/Llama-2-7b-hf
+2026-04-04 17:21:37,193 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-04 17:21:37,276 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-04 17:21:37,308 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-04 17:21:37,336 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/meta-llama/Llama-2-7b-hf/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-04 17:21:37,366 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/meta-llama/Llama-2-7b-hf/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-04 17:21:37,541 - __main__ - INFO - Loading engine from index: /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/1b
+2026-04-04 17:21:37,556 - __main__ - INFO - Query: 'natural language processing'
+2026-04-04 17:21:37,556 - __main__ - INFO - Token IDs: [5613, 4086, 9068]
+2026-04-04 17:21:37,556 - __main__ - INFO - === Step 1: Count query ===
+2026-04-04 17:21:37,653 - __main__ - INFO - Count: {'count': 5488, 'approx': False}
+2026-04-04 17:21:37,653 - __main__ - INFO - === Step 2: Find query ===
+2026-04-04 17:21:37,653 - __main__ - INFO - Find (segment_by_shard): {'cnt': 5488, 'segment_by_shard': [(1363993062, 1363998550)]}
+2026-04-04 17:21:37,653 - __main__ - INFO - === Step 3: Get document by rank ===
+2026-04-04 17:21:37,693 - __main__ - INFO - First matching doc (shard 0, rank 1363993062): {'doc_ix': 1336830, 'doc_len': 516, 'disp_len': 20, 'needle_offset': 10, 'metadata': '{"path": "tulu-3-sft-olmo-2-mixture-0225.jsonl", "linenum": 550282, "metadata": {"id": "ai2-adapt-dev/tulu_v3.9_wildjailbreak_decontaminated_50k_26944", "source": "ai2-adapt-dev/tulu_v3.9_wildjailbreak_decontaminated_50k", "dataset_type": "sft", "dataset_name": "tulu-3-sft-olmo-2-mixture-0225", "model_size": "1b"}}\n', 'token_ids': [29901, 1068, 383, 5421, 373, 23382, 12032, 14710, 6656, 322, 5613, 4086, 9068, 515, 337, 649, 519, 28976, 7788, 29889], 'blocked': False}
+2026-04-04 17:21:37,693 - __main__ - INFO - Decoded text: :** Focus on studying speech synthesis and natural language processing from reputable educational resources.
+2026-04-04 17:21:37,694 - __main__ - INFO - === Job finished at Sat Apr 04 05:21:37 PM  2026 ===
+2026-04-04 17:21:37,694 - __main__ - INFO - === Elapsed time: 0 days 00:00:00 (total 0.583 seconds) ===

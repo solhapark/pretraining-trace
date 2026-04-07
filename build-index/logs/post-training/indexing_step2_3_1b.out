@@ -1,0 +1,16 @@
+=== Step 2.3 (concat) started at Sat Apr  4 17:14:25 EDT 2026 ===
+Ratio: 4, Token width: 2
+Merged directory: /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/1b/merged-0
+Number of merged files: 28
+Output file: /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/1b/table.0
+Success! table.0 created: 5837191440 bytes (5.5GiB)
+=== Step 2.3 (concat) finished at Sat Apr  4 17:14:28 EDT 2026 ===
+=== Elapsed time: 0 days 00:00:03 (total 3 seconds)
+
+=== Indexing complete (1b)! ===
+Final index files:
+-rw-r--r-- 1 solhapark ZhouJGroup 528M Apr  4 16:44 /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/1b/metadata.0
+-rw-r--r-- 1 solhapark ZhouJGroup  13M Apr  4 16:44 /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/1b/metaoff.0
+-rw-r--r-- 1 solhapark ZhouJGroup  13M Apr  4 16:44 /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/1b/offset.0
+-rw-r--r-- 1 solhapark ZhouJGroup 5.5G Apr  4 17:14 /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/1b/table.0
+-rw-r--r-- 1 solhapark ZhouJGroup 2.8G Apr  4 16:44 /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/1b/tokenized.0

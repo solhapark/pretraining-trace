@@ -1,0 +1,15 @@
+=== Step 2.3 (concat) started at Tue Apr  7 02:55:23 AM EDT 2026 ===
+Ratio: 5, Token width: 2
+Merged directory: /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/merged-0
+Merged part file count: 96
+Output: /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/table.0
+Success! table.0: 532856520280 bytes (497GiB)
+=== Step 2.3 (concat) finished at Tue Apr  7 02:59:20 AM EDT 2026 ===
+=== Elapsed time: 0 days 00:03:57 (total 237 seconds)
+
+=== Indexing complete (dolmino-mix-1124)! ===
+-rw-r--r-- 1 solhapark solhapark 187G Apr  6 02:51 /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/metadata.0
+-rw-r--r-- 1 solhapark solhapark 960M Apr  6 02:51 /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/metaoff.0
+-rw-r--r-- 1 solhapark solhapark 960M Apr  6 02:51 /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/offset.0
+-rw-r--r-- 1 solhapark solhapark 497G Apr  7 02:59 /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/table.0
+-rw-r--r-- 1 solhapark solhapark 199G Apr  6 02:51 /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/dolmino-mix-1124/tokenized.0

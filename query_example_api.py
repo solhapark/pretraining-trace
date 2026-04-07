@@ -15,7 +15,7 @@ load_dotenv(os.path.join(SCRIPT_DIR, ".env"))
 
 # API configuration
 API_ENDPOINT = "https://api.infini-gram.io/"
-INDEX_NAME = "v4_piletrain_llama"
+INDEX_NAME = "v4_olmo-mix-1124_llama"
 QUERY_STR = "natural language processing"
 
 # Retry configuration
@@ -25,9 +25,9 @@ RETRY_DELAY = 1  # seconds
 
 def setup_logger():
     os.makedirs("logs", exist_ok=True)
-    # timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    # log_filepath = f"logs/run_query_example_api_{timestamp}.log"
-    log_filepath = "logs/run_query_example_api.log"
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    log_filepath = f"logs/run_query_example_api_{timestamp}.log"
+    # log_filepath = "logs/run_query_example_api.log"
 
     logging.basicConfig(
         level=logging.INFO,

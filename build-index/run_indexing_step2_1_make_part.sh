@@ -1,20 +1,32 @@
 #!/bin/bash
 #SBATCH --job-name=index_step2_1
 #SBATCH --nodes=1
-#SBATCH --partition=long-28core
+#SBATCH --partition=long-40core
 #SBATCH --cpus-per-task=28
-#SBATCH --mem=124G
+#SBATCH --mem=128G
 #SBATCH --time=2-00:00:00
 #SBATCH --output=/dev/null
 #SBATCH --error=/dev/null
 
+## Usage:
+#   Single model:  sbatch --job-name=index_step2_1_1b run_indexing_step2_1_make_part.sh 1b
+#   All models:    bash submit_indexing_step2_1_all.sh
+#
+# Available model sizes: 1b, 7b, 13b, 32b
+
+## Build rust_indexing
+# cd /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/infini-gram/pkg
+# module load rust/1.84.0
+# cargo build --release
+
 set -euo pipefail
 
-# Redirect output and error to timestamped log files
-TIMESTAMP=$(date +"%Y%m%d-%H%M%S")
+DATASET_TAG="dolmino-mix-1124"
+
+# Redirect output and error to log files (same pattern as run_indexing_step1_tokenize.sh)
 mkdir -p logs
-exec > >(tee "logs/indexing_step2_1_${TIMESTAMP}.out")
-exec 2> >(tee "logs/indexing_step2_1_${TIMESTAMP}.err" >&2)
+exec > >(tee "logs/indexing_step2_1.out")
+exec 2> >(tee "logs/indexing_step2_1.err" >&2)
 
 # Activate conda env
 if command -v module &>/dev/null; then
@@ -24,21 +36,25 @@ source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate /gpfs/home/solhapark/envs/infinigram
 
 # Load HF_TOKEN
-if [[ -f /gpfs/scratch/solhapark/pretrain-trace/.env ]]; then
+if [[ -f /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/.env ]]; then
   set -a
-  source /gpfs/scratch/solhapark/pretrain-trace/.env
+  source /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/.env
   set +a
 fi
 
-cd /gpfs/scratch/solhapark/pretrain-trace/infini-gram/pkg
+cd /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/infini-gram/pkg
 
-DATA_DIR="/gpfs/scratch/solhapark/pretrain-trace/train"
-SAVE_DIR="/gpfs/scratch/solhapark/pretrain-trace/index"
+SAVE_DIR="/gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/${DATASET_TAG}"
 TEMP_DIR="${SAVE_DIR}"
-TOKENIZER="llama"
 CPUS=28
-MEM_GB=480
-TOKEN_WIDTH=2  # u16 = 2 bytes
+# Per-process memory budget (GiB) used in batch sizing; must match infini_gram/indexing.py (mem_bytes // divisor).
+MEM_GB=32
+TOKEN_WIDTH=2  # u16 LLaMA tokens; divisor 8 (use 12 if TOKEN_WIDTH=1)
+if [[ "${TOKEN_WIDTH}" -eq 1 ]]; then
+  MEM_DIVISOR=12
+else
+  MEM_DIVISOR=8
+fi
 
 echo "=== Step 2.1 (make-part) started at $(date) ==="
 START_TIME=$(date +%s)
@@ -62,7 +78,7 @@ HACK=100000
 RATIO=$(python3 -c "import math; print(int(math.ceil(math.log2(${DS_SIZE}) / 8)))")
 MEM_BYTES=$((MEM_GB * 1024**3))
 NUM_JOB_BATCHES=1
-while [[ $((NUM_JOB_BATCHES * (MEM_BYTES / 8))) -lt ${DS_SIZE} ]]; do
+while [[ $((NUM_JOB_BATCHES * (MEM_BYTES / MEM_DIVISOR))) -lt ${DS_SIZE} ]]; do
   NUM_JOB_BATCHES=$((NUM_JOB_BATCHES * 2))
 done
 PARALLEL_JOBS=${CPUS}
@@ -97,7 +113,7 @@ for ((batch_start=0; batch_start<TOTAL_JOBS; batch_start+=PARALLEL_JOBS)); do
       continue
     fi
     ((RUN++)) || true
-    /gpfs/scratch/solhapark/pretrain-trace/infini-gram/pkg/target/release/rust_indexing make-part \
+    /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/infini-gram/pkg/target/release/rust_indexing make-part \
       --data-file "${DS_PATH}" \
       --parts-dir "${PARTS_DIR}" \
       --start-byte "${s}" \

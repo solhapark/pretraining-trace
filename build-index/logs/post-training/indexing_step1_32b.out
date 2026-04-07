@@ -1,0 +1,8 @@
+=== Step 1 (tokenize) started at Sat Apr  4 17:31:16 EDT 2026 ===
+Step 1 (tokenize): Starting ...
+=== Step 1 (tokenize) finished at Sat Apr  4 17:34:00 EDT 2026 ===
+=== Elapsed time: 0 days 00:02:44 (total 164 seconds)
+
+tokenized.0 : 2.8GiB
+offset.0    : 13MiB
+=== Next step: Run run_indexing_step2_1_make_part.sh ===

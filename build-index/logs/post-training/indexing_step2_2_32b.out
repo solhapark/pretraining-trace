@@ -1,0 +1,11 @@
+=== Step 2.2 (merge) started at Sat Apr  4 23:35:25 EDT 2026 ===
+Ratio: 4, Token width: 2
+Parts directory: /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/32b/parts-0
+Number of part files: 28
+Merge: full run (all 16 merge workers)
+ulimit -n: 65536 (OK for merge)
+Executing: /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/infini-gram/pkg/target/release/rust_indexing merge --data-file /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/32b/tokenized.0 --parts-dir /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/32b/parts-0 --merged-dir /gpfs/projects/ZhouJGroup/Users/solhapark/pretraining-trace/index/post-training/32b/merged-0 --num-threads 28 --hacksize 100000 --ratio 4 --token-width 2
+=== Step 2.2 (merge) finished at Sat Apr  4 23:36:00 EDT 2026 ===
+=== Elapsed time: 0 days 00:00:35 (total 35 seconds)
+
+=== Next step: sbatch --job-name=index_step2_3_32b run_indexing_step2_3_concat.sh 32b ===
